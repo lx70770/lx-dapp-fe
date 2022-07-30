@@ -13,7 +13,7 @@ const LXToken: React.FC = () => {
         <PageHeader
           ghost={false}
           title="LXToken信息"
-          subTitle="打开控制台查看转账和接收转账事件监听"
+          subTitle="打开控制台查看转账和接收转账事件监听 测试Jenkins"
           extra={[
             <Button key="1" onClick={() => refresh()}>
               获取余额
