@@ -8,4 +8,6 @@ export const MAX_HEX_NUMBER = '0xfffffffffffffffffffffffffffffffffffffffffffffff
 
 export const DEFAULT_JSON_PROVIDER = new JsonRpcProvider(URLS[3][0])
 
+export const isProd = ENV === 'prod'
+
 export * from './chains'
