@@ -8,7 +8,7 @@ import Network from './_network'
 const App: React.FC = () => {
   return (
     <>
-      <h1>{isProd ? '正式环境' : '测试环境'}</h1>
+      <h1>{isProd ? '正式环境 测试分支保护' : '测试环境'}</h1>
       <Network />
       <Metamask />
       <LXToken />
