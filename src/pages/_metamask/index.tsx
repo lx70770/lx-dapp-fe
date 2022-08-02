@@ -1,11 +1,20 @@
 import useBalance from '@/hooks/useBalance'
 import useWallte from '@/hooks/useWallet'
+import MetaMaskOnboarding from '@metamask/onboarding'
 import { Button, Descriptions, PageHeader, Spin } from 'antd'
 import React from 'react'
 
 const Metamask: React.FC = () => {
-  const { connect, disconnect, chainId, account, isActiviting } = useWallte()
+  const { connect, disconnect, chainId, account, isActiviting, isActivitve } = useWallte()
   const { balance } = useBalance()
+
+  const connectWallet = () => {
+    if (MetaMaskOnboarding.isMetaMaskInstalled()) {
+      connect()
+    } else {
+      new MetaMaskOnboarding().startOnboarding()
+    }
+  }
 
   return (
     <div className="site-page-header-ghost-wrapper">
@@ -15,8 +24,8 @@ const Metamask: React.FC = () => {
           title="钱包信息"
           subTitle="Metamask & 账户基本信息"
           extra={[
-            <Button key="3" onClick={() => connect()}>
-              链接钱包
+            <Button key="3" onClick={() => (isActivitve ? undefined : connectWallet())}>
+              {isActivitve ? '已连接' : '链接钱包'}
             </Button>,
             <Button key="2" onClick={() => disconnect()}>
               断开连接

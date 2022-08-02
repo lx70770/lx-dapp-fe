@@ -13,7 +13,7 @@ export default function useWallet() {
   const isActivitve = useIsActive()
   const provider = useProvider()
 
-  const connect = (chainId: number = 3) => {
+  const connect = (chainId: number = 4) => {
     return metaMask.activate(chainId)
   }
 

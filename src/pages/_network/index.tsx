@@ -8,7 +8,7 @@ const Network: React.FC = () => {
   const { chainId } = useWallet()
 
   const fromatConnect = () => {
-    if (chainId !== 3) return '钱包链接非Ropsten网络'
+    if (chainId !== 4) return '钱包链接非Rinkeby网络'
     if (isActiviting) return '连接中...'
     if (isActivitve) return '已连接'
     return '连接失败'
@@ -19,7 +19,7 @@ const Network: React.FC = () => {
       <Spin spinning={isActiviting}>
         <PageHeader ghost={false} title="网络信息" subTitle="Metamask & 网络基本信息">
           <Descriptions size="small" column={3}>
-            <Descriptions.Item label="Ropsten网络连接状态">{fromatConnect()}</Descriptions.Item>
+            <Descriptions.Item label="Rinkeby网络连接状态">{fromatConnect()}</Descriptions.Item>
             <Descriptions.Item label="chainId">{chainId}</Descriptions.Item>
           </Descriptions>
         </PageHeader>
