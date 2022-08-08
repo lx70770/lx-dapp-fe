@@ -1,4 +1,6 @@
-import { DEFAULT_JSON_PROVIDER } from '@/constants'
+import { CURRENT_NEED_NETWORK, DEFAULT_JSON_PROVIDER } from '@/constants'
+import sliceAddress from '@/utils/slice_address'
+import { useMemo } from 'react'
 import { hooks, metaMask } from '../connectors/metamask'
 
 export default function useWallet() {
@@ -10,7 +12,7 @@ export default function useWallet() {
   const ensName = useENSName()
   const ensNames = useENSNames()
   const isActiviting = useIsActivating()
-  const isActivitve = useIsActive()
+  const isActive = useIsActive()
   const provider = useProvider()
 
   const connect = (chainId: number = 4) => {
@@ -25,14 +27,9 @@ export default function useWallet() {
     return metaMask.resetState()
   }
 
-  // console.log(chainId)
-  // console.log(account)
-  // console.log(accounts)
-  // console.log(ensName)
-  // console.log(ensNames)
-  // console.log(isActiviting)
-  // console.log(isActivitve)
-  // console.log(provider)
+  const shortAccountAddress = useMemo(() => sliceAddress(account), [account])
+
+  const isNetworkNotSupport = useMemo(() => Number(chainId) !== CURRENT_NEED_NETWORK && chainId, [chainId])
 
   return {
     connect,
@@ -44,7 +41,9 @@ export default function useWallet() {
     ensName,
     ensNames,
     isActiviting,
-    isActivitve,
+    isActive,
+    isNetworkNotSupport,
     provider: provider || DEFAULT_JSON_PROVIDER,
+    shortAccountAddress,
   }
 }

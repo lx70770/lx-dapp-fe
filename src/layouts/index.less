@@ -1,3 +1,79 @@
 .layout {
-  padding: 12px;
+
+  .header {
+    padding: 35px;
+    background-color: #404040;
+    color: #fff;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+
+    .left {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-start;
+      align-items: center;
+
+      span {
+        font-size: 24px;
+        display: inline-block;
+        margin-right: 15px;
+      }
+
+      .menu {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        align-items: center;
+
+        .item {
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 14px;
+          list-style: none;
+          display: inline-block;
+          margin-left: 15px;
+          cursor: pointer;
+          transition: color 0.1s ease-in-out;
+
+          &:hover {
+            color: rgba(255, 255, 255, 1);
+          }
+        }
+      }
+    }
+
+    .right {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-start;
+      align-items: center;
+
+      .urls {
+
+        img {
+          display: inline-block;
+          margin-right: 20px;
+          cursor: pointer;
+          opacity: .8;
+
+          transition: opacity 0.2s ease-in-out;
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+
+        .twitterIcon {
+          width: 48px;
+          height: 48px;
+        }
+
+        .openseaIcon {
+          width: 38px;
+          height: 38px;
+        }
+      }
+    }
+  }
 }

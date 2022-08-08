@@ -3,11 +3,6 @@ export default [
     inputs: [
       {
         internalType: 'uint256',
-        name: '_cost',
-        type: 'uint256',
-      },
-      {
-        internalType: 'uint256',
         name: '_maxSupply',
         type: 'uint256',
       },
@@ -163,23 +158,16 @@ export default [
     inputs: [
       {
         internalType: 'uint256',
-        name: 'tokenId',
+        name: '_amount',
         type: 'uint256',
       },
     ],
-    name: 'burn',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function',
-  },
-  {
-    inputs: [],
-    name: 'cost',
+    name: 'getAirdropList',
     outputs: [
       {
-        internalType: 'uint256',
+        internalType: 'address[]',
         name: '',
-        type: 'uint256',
+        type: 'address[]',
       },
     ],
     stateMutability: 'view',
@@ -250,33 +238,8 @@ export default [
       },
     ],
     name: 'mint',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256',
-      },
-    ],
-    stateMutability: 'payable',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        internalType: 'address',
-        name: '_address',
-        type: 'address',
-      },
-    ],
-    name: 'mintedAccount',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256',
-      },
-    ],
-    stateMutability: 'view',
+    outputs: [],
+    stateMutability: 'nonpayable',
     type: 'function',
   },
   {
@@ -396,15 +359,15 @@ export default [
     type: 'function',
   },
   {
-    inputs: [],
-    name: 'selfMint',
-    outputs: [
+    inputs: [
       {
         internalType: 'uint256',
-        name: '',
+        name: '_amount',
         type: 'uint256',
       },
     ],
+    name: 'selfMint',
+    outputs: [],
     stateMutability: 'nonpayable',
     type: 'function',
   },
@@ -435,19 +398,6 @@ export default [
       },
     ],
     name: 'setBaseTokenURI',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: '_cost',
-        type: 'uint256',
-      },
-    ],
-    name: 'setCost',
     outputs: [],
     stateMutability: 'nonpayable',
     type: 'function',
