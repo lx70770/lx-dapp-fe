@@ -21,7 +21,6 @@ const MintButton: React.FC<{ disable: boolean; mintLoading: boolean; mint: () =>
 const App: React.FC = () => {
   const { totalSupply, balance, mint, mintLoading } = useLXMFERInfo()
   const { isActive, isNetworkNotSupport, account } = useWallet()
-  console.log(balance)
 
   return (
     <div className={styles.mint}>
