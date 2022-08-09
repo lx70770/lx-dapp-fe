@@ -1,23 +1,26 @@
 import useWallet from '@/hooks/useWallet'
 import { makeLXMFERContract } from '@/utils/make_contract'
-import { BigNumber } from '@ethersproject/bignumber'
 import { message } from 'antd'
 import { useEffect, useState } from 'react'
 
 export function useLXMFERInfo() {
   const { provider, account } = useWallet()
   const [loading, setLoading] = useState(false)
-  const [mintedAccount, setMintedAccount] = useState('')
+  const [mintLoading, setMintLoading] = useState(false)
+  const [balance, setBalance] = useState('0')
+  const [totalSupply, setTotalSupply] = useState('0')
 
-  async function getLXMFERInfo() {
+  async function getLXStapOneInfo() {
     try {
       setLoading(true)
       const contract = makeLXMFERContract(provider, account)
 
-      const balance = await contract.mintedAccount(account)
-      setMintedAccount(balance.toString())
+      const balance = await contract.balanceOf(account)
+      const totalSupply = await contract.totalSupply()
+      setBalance(balance.toString())
+      setTotalSupply(totalSupply.toString())
     } catch (e: any) {
-      console.error('获取LX Token信息失败', e.message)
+      console.error('get mfer info failed', e.message)
     } finally {
       setLoading(false)
     }
@@ -25,7 +28,7 @@ export function useLXMFERInfo() {
 
   useEffect(() => {
     if (account && provider) {
-      getLXMFERInfo()
+      getLXStapOneInfo()
     }
   }, [account, provider])
 
@@ -37,35 +40,34 @@ export function useLXMFERInfo() {
 
     contract.on(fromMe, (from, to, amount, event) => {
       console.log('Transfer|mint', { from, to, amount, event })
-      getLXMFERInfo()
+      getLXStapOneInfo()
     })
     return () => {
       contract.removeAllListeners(fromMe)
     }
   }, [account, provider])
 
-  async function mint(address: string, cost: BigNumber) {
-    console.log(`cost: ${cost.toString()}`)
-
+  async function mint(address: string) {
     try {
-      setLoading(true)
+      setMintLoading(true)
       const contract = makeLXMFERContract(provider, account)
-      const tx = await contract.mint(address, {
-        value: cost,
-      })
+      const tx = await contract.mint(address)
       const result = await tx.wait()
+      message.success(`mint success`)
     } catch (e: any) {
-      message.error(`mint failed ${e.message || ''}`)
+      message.error(`mint error`)
       console.error('mint失败', e.message)
     } finally {
-      setLoading(false)
+      setMintLoading(false)
     }
   }
 
   return {
-    mintedAccount,
+    balance,
+    totalSupply,
     loading,
+    mintLoading,
     mint,
-    refresh: getLXMFERInfo,
+    refresh: getLXStapOneInfo,
   }
 }

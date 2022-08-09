@@ -29,7 +29,7 @@ export default function useWallet() {
 
   const shortAccountAddress = useMemo(() => sliceAddress(account), [account])
 
-  const isNetworkNotSupport = useMemo(() => Number(chainId) !== CURRENT_NEED_NETWORK && chainId, [chainId])
+  const isNetworkNotSupport = useMemo(() => Number(chainId) !== CURRENT_NEED_NETWORK && !!chainId, [chainId])
 
   return {
     connect,

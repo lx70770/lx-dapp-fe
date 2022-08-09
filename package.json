@@ -30,6 +30,7 @@
     "@web3-react/url": "8.0.25-beta.0",
     "@web3-react/walletconnect": "8.0.35-beta.0",
     "antd": "^4.21.7",
+    "classnames": "^2.3.1",
     "ipfs-core": "^0.15.4",
     "merge-images": "^2.0.0",
     "normalize.less": "^1.0.0",

@@ -1,5 +1,5 @@
 import { JsonRpcProvider, Provider, Web3Provider } from '@ethersproject/providers'
-import { BigNumber, Contract, ContractInterface, ContractTransaction, PayableOverrides, Signer } from 'ethers'
+import { BigNumber, Contract, ContractInterface, ContractTransaction, Signer } from 'ethers'
 import LXMFERAbi from '../abi/lx_mfer'
 import LXTokenAbi from '../abi/lx_token'
 import { LX_MFER_ADDRESS, LX_TOKEN_ADDRESS } from './../constants/index'
@@ -27,8 +27,9 @@ export function makeLXTokenContract(provider: Web3Provider | JsonRpcProvider, ac
 }
 
 export interface LXMFERContract extends Contract {
-  mintedAccount: (address: string) => Promise<BigNumber>
-  mint: (address: string, overrides?: PayableOverrides) => Promise<ContractTransaction>
+  balanceOf: (address: string) => Promise<BigNumber>
+  totalSupply: () => Promise<BigNumber>
+  mint: (address: string) => Promise<ContractTransaction>
 }
 
 export function makeLXMFERContract(provider: Web3Provider | JsonRpcProvider, account?: string) {
