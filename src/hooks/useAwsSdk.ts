@@ -56,27 +56,27 @@ export function useAWS() {
   }
 
   const uploadJson = async () => {
-    const albumPhotosKey = encodeURIComponent('lx-json') + '/'
+    const albumPhotosKey = encodeURIComponent('lz') + '/'
     if (s3Ins) {
-      const photoKey = albumPhotosKey + '2311.json'
-      const uploadParams = {
-        Bucket: BUCKET_NAME,
-        Key: photoKey,
-        Body: JSON.stringify({
-          image: 'https://dasda/ad/a/d/asd/asd/',
-          a: 1,
-          b: {
-            a: 'da',
-            c: 'vv2',
-            d: false,
-          },
-          d: true,
-        }),
-        ContentType: 'application/json',
+      let i = 1
+      while (i <= 200) {
+        const photoKey = `${albumPhotosKey}${i}.json`
+        const uploadParams = {
+          Bucket: BUCKET_NAME,
+          Key: photoKey,
+          Body: JSON.stringify({
+            name: `LZZZZ #${i}`,
+            description: 'this is first step image',
+            image: 'https://lx-cssofer.s3.ap-south-1.amazonaws.com/lz-images/strange-line.png',
+            attributes: [],
+          }),
+          ContentType: 'application/json',
+        }
+        const data = await s3Ins.send(new PutObjectCommand(uploadParams))
+        console.log('Successfully uploaded json.' + i)
+        console.log(data)
+        i++
       }
-      const data = await s3Ins.send(new PutObjectCommand(uploadParams))
-      console.log('Successfully uploaded json.')
-      console.log(data)
     }
   }
 

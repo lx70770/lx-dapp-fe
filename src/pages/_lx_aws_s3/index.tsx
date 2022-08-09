@@ -19,10 +19,10 @@ const AwsS3Page: React.FC = () => {
             <Button key="4" onClick={() => uploadJson()}>
               uploadJson
             </Button>,
-            <Button key="2" onClick={() => createAlbums('lx-json')}>
+            <Button key="2" onClick={() => createAlbums('lz')}>
               createAlbums1
             </Button>,
-            <Button key="3" onClick={() => createAlbums('lx-images')}>
+            <Button key="3" onClick={() => createAlbums('lz-images')}>
               createAlbums1
             </Button>,
           ]}
@@ -31,7 +31,6 @@ const AwsS3Page: React.FC = () => {
             <Descriptions.Item label="合约地址">{LX_TOKEN_ADDRESS}</Descriptions.Item>
           </Descriptions>
         </PageHeader>
-        <img src="https://lx-cssofer.s3.ap-south-1.amazonaws.com/lx-images/blue_red.png" alt="" />
       </Spin>
     </div>
   )
