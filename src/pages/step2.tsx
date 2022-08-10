@@ -8,7 +8,7 @@ import classnams from 'classnames'
 import _ from 'lodash'
 import mergeImages from 'merge-images'
 import React, { useEffect, useState } from 'react'
-import BaseImage from '../assets/Background/base.png'
+import BaseImage from '../assets/background/base.png'
 import styles from './styles.less'
 
 const { Option } = Select
