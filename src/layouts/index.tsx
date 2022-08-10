@@ -1,3 +1,4 @@
+import useWallte from '@/hooks/useWallet'
 import 'animate.css'
 import classnames from 'classnames'
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
@@ -9,12 +10,12 @@ import styles from './index.less'
 const Layout: React.FC = () => {
   const [open, setOpen] = useState(false)
   const [disable, setDisable] = useState(false)
-  // const { connectEagerly } = useWallte()
+  const { connectEagerly } = useWallte()
   const left_node = useRef<HTMLDivElement>(null)
   const right_node = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    // connectEagerly()
+    connectEagerly()
     history.replace('/')
   }, [])
 

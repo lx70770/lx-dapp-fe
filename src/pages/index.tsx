@@ -4,6 +4,7 @@ import useWallet from '@/hooks/useWallet'
 import cls from 'classnames'
 import React from 'react'
 import styles from './styles.less'
+import AwsS3Page from './_lx_aws_s3'
 
 const MintButton: React.FC<{ disable: boolean; mintLoading: boolean; mint: () => void }> = ({ disable, mint, mintLoading }) => {
   const style = cls({
@@ -29,6 +30,7 @@ const App: React.FC = () => {
       <div>1 free per wallet</div>
       <div>supply: {totalSupply ?? 0} / 5000</div>
       <MintButton mintLoading={mintLoading} disable={!isActive || isNetworkNotSupport || mintLoading || Number(balance) > 0} mint={() => mint(account)} />
+      <AwsS3Page />
     </div>
   )
 }

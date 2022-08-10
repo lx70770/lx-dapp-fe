@@ -6,6 +6,7 @@ export const ETH_MAINNET_CHAIN_ID = 1
 
 export const LX_TOKEN_ADDRESS = '0xdFf2A70e99D2aa9762864dBa21cE239Da2b8c22d'
 export const LX_MFER_ADDRESS = '0xbA8C7545d69D6aDBd0159685aFA2038512fEA779'
+export const LX_DIAMADN_ADDRESS = '0xcb8e43328b478aab6adab605bbc7a966dbf9fee9'
 
 // 最大的16进制数, 用于授权额度
 export const MAX_HEX_NUMBER = '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'

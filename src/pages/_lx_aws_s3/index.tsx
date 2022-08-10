@@ -1,5 +1,5 @@
-import { LX_TOKEN_ADDRESS } from '@/constants'
 import { useAWS } from '@/hooks/useAwsSdk'
+import { etherToWei } from '@/utils/format_bignumber'
 import { Button, Descriptions, PageHeader, Spin } from 'antd'
 import React from 'react'
 
@@ -13,12 +13,9 @@ const AwsS3Page: React.FC = () => {
           ghost={false}
           title="AwsS3Page信息"
           extra={[
-            <Button key="1" onClick={() => uploadImage()}>
-              uploadImage
-            </Button>,
-            <Button key="4" onClick={() => uploadJson()}>
-              uploadJson
-            </Button>,
+            // <Button key="4" onClick={() => uploadJson()}>
+            //   uploadJson
+            // </Button>,
             <Button key="2" onClick={() => createAlbums('lz')}>
               createAlbums1
             </Button>,
@@ -28,7 +25,7 @@ const AwsS3Page: React.FC = () => {
           ]}
         >
           <Descriptions size="small" column={3}>
-            <Descriptions.Item label="合约地址">{LX_TOKEN_ADDRESS}</Descriptions.Item>
+            <Descriptions.Item label="合约地址">{etherToWei('0.01').toString()}</Descriptions.Item>
           </Descriptions>
         </PageHeader>
       </Spin>

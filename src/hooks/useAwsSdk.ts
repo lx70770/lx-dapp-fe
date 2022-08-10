@@ -1,10 +1,9 @@
 import { CognitoIdentityClient } from '@aws-sdk/client-cognito-identity'
 import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3'
 import { fromCognitoIdentityPool } from '@aws-sdk/credential-provider-cognito-identity'
-import mergeImages from 'merge-images'
 import { useEffect, useState } from 'react'
-import BlueBack from '../assets/Background/SunBlue.png'
-import RedEye from '../assets/Eye/Red.png'
+// import BlueBack from '../assets/Background/SunBlue.png'
+// import RedEye from '../assets/Eye/Red.png'
 
 const BUCKET_NAME = 'lx-cssofer'
 const REGION = 'ap-south-1'
@@ -55,35 +54,34 @@ export function useAWS() {
     }
   }
 
-  const uploadJson = async () => {
+  const uploadJson = async (tokenId: string) => {
     const albumPhotosKey = encodeURIComponent('lz') + '/'
     if (s3Ins) {
-      let i = 1
-      while (i <= 200) {
-        const photoKey = `${albumPhotosKey}${i}.json`
-        const uploadParams = {
-          Bucket: BUCKET_NAME,
-          Key: photoKey,
-          Body: JSON.stringify({
-            name: `LZZZZ #${i}`,
-            description: 'this is first step image',
-            image: 'https://lx-cssofer.s3.ap-south-1.amazonaws.com/lz-images/strange-line.png',
-            attributes: [],
-          }),
-          ContentType: 'application/json',
-        }
-        const data = await s3Ins.send(new PutObjectCommand(uploadParams))
-        console.log('Successfully uploaded json.' + i)
-        console.log(data)
-        i++
+      // let i = 1
+      // while (i <= 200) {
+      const photoKey = `${albumPhotosKey}${tokenId}.json`
+      const uploadParams = {
+        Bucket: BUCKET_NAME,
+        Key: photoKey,
+        Body: JSON.stringify({
+          name: `LZZZZ #${tokenId}`,
+          description: 'this is first step image',
+          image: `https://lx-cssofer.s3.ap-south-1.amazonaws.com/lz-images/${tokenId}.png`,
+          attributes: [],
+        }),
+        ContentType: 'application/json',
       }
+      const data = await s3Ins.send(new PutObjectCommand(uploadParams))
+      console.log('Successfully uploaded json.')
+      console.log(data)
+      //   i++
+      // }
     }
   }
 
-  const uploadImage = async () => {
-    const base64Url = await mergeImages([BlueBack, RedEye], { quality: 1 })
-    const file = await dataURLtoFile(base64Url, 'blue_red1.png')
-    const albumPhotosKey = encodeURIComponent('lx-images') + '/'
+  const uploadImage = async (base64Url: string, tokenId: string) => {
+    const file = await dataURLtoFile(base64Url, `${tokenId}.png`)
+    const albumPhotosKey = encodeURIComponent('lz-images') + '/'
     if (s3Ins) {
       const fileName = file.name
       const photoKey = albumPhotosKey + fileName

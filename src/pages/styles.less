@@ -25,3 +25,55 @@
 .disable {
     cursor: not-allowed !important;
 }
+
+.step2 {
+    margin: 40px 40px 0 40px;
+    padding-bottom: 40px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    .preview {
+        width: 508px;
+        margin-right: 40px;
+
+        .preview_img {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            max-height: 100%;
+            max-width: 100%;
+            overflow: hidden;
+            position: relative;
+
+            img {}
+        }
+    }
+
+    .choices {
+        flex: 1;
+
+        .deco_img {
+            width: 60px;
+            height: 80px;
+            margin: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.6);
+            cursor: pointer;
+
+            &:hover {
+                border: 1px solid rgba(0, 0, 0, 1);
+            }
+
+            img {
+                display: inline-block;
+                width: 60px;
+                height: 80px;
+            }
+        }
+
+        .deco_img_select {
+            border: 1px solid red !important;
+        }
+    }
+}
