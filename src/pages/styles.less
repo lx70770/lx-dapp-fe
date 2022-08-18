@@ -1,29 +1,228 @@
 .mint {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-start;
-    align-items: center;
-}
+    position: relative;
+    height: 100%;
 
-.button {
-    margin-top: 30px;
-    height: 46px;
-    border-radius: 23px;
-    border: 1px solid #000;
-    padding: 0 40px;
-    background-color: transparent;
-    cursor: pointer;
-    opacity: 0.8;
-    transition: opacity 0.1s ease-in-out;
+    .gates_one {
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #000;
+        transform-origin: center 650px;
 
-    &:hover {
-        opacity: 1;
+        .fuck_bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            display: inline-block;
+            opacity: 0.5;
+        }
+
+        .light_in {
+            position: absolute;
+            top: 400px;
+            left: 0;
+            right: 0;
+            width: 300px;
+            height: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #EBF524;
+        }
+
+        .gate_one {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            display: inline-block;
+            background-image: url(../assets/images/gate_one.png);
+            background-repeat: no-repeat;
+            background-position: top;
+            background-size: 1920px auto;
+        }
+
+        .symbol_top {
+            position: absolute;
+            top: 190px;
+            left: 0;
+            right: 0;
+            width: auto;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            color: #EBF524;
+            font-size: 80px;
+            font-weight: 600;
+        }
+
+        .symbol_middle {
+            position: absolute;
+            top: 320px;
+            left: 0;
+            right: 0;
+            width: auto;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            color: #EBF524;
+            font-size: 30px;
+            font-weight: 600;
+        }
+
+        .video_modal {
+            position: absolute;
+            top: 765px;
+            right: 35px;
+            width: 200px;
+            text-align: center;
+            color: #EBF524;
+            font-size: 24px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .light_out {
+            position: absolute;
+            top: 390px;
+            left: 0;
+            right: 0;
+            width: 400px;
+            height: 480px;
+            margin-left: auto;
+            margin-right: auto;
+            background: radial-gradient(180px 290px, rgba(235, 245, 36, 0.4) 45%, rgba(235, 245, 36, 0.0));
+        }
+
+        .gates_one_door_left {
+            position: absolute;
+            left: 50%;
+            top: 450px;
+            height: 350px;
+            background-color: rgb(235, 245, 36);
+
+            img {
+                display: inline-block;
+                height: 350px;
+            }
+        }
+
+        .gates_one_door_right {
+            position: absolute;
+            right: 50%;
+            top: 450px;
+            height: 350px;
+            background-color: #EBF524;
+
+            img {
+                display: inline-block;
+                height: 350px;
+            }
+        }
+
+        .gates_one_line {
+            height: 100%;
+            width: 1px;
+            background-color: #EBF524;
+        }
+
+        .mint_wrap {
+            position: absolute;
+            top: 840px;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: space-between;
+            align-items: center;
+            height: 120px;
+
+            .mint {
+                position: relative;
+                width: 178px;
+                height: 49px;
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+
+                .left {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    bottom: 0;
+                    border-top: 1px solid #fff;
+                    border-left: 1px solid #fff;
+                    border-bottom: 1px solid #fff;
+                    width: 83px;
+                    height: 100%;
+                }
+
+                .right {
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    border-top: 1px solid #fff;
+                    border-right: 1px solid #fff;
+                    border-bottom: 1px solid #fff;
+                    width: 83px;
+                    height: 100%;
+
+                }
+
+                .content {
+                    background: #EBF524;
+                    width: 168px;
+                    height: 39px;
+                    text-align: center;
+                    line-height: 39px;
+                    font-weight: 500;
+                    font-size: 16px;
+                    color: #000000;
+                }
+            }
+
+            span {
+                color: #fff;
+                font-weight: 500;
+                font-size: 20px;
+                line-height: 24px;
+            }
+
+            .trigger {
+                width: 18px;
+            }
+        }
+    }
+
+    .step_one_bg {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        display: inline-block;
+        background-image: url(../assets/images/step_one_bg.png);
+        background-repeat: no-repeat;
+        background-position: top;
+        background-size: 100% 100%;
+
+
     }
 }
 
-.disable {
-    cursor: not-allowed !important;
-}
 
 .step2 {
     margin: 40px 40px 0 40px;

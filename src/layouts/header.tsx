@@ -3,7 +3,6 @@ import useWallte from '@/hooks/useWallet'
 import classnames from 'classnames'
 import React from 'react'
 import { history, useLocation } from 'umi'
-import Logo from '../assets/images/logo.png'
 import openseaIcon from '../assets/svg/opensea.svg'
 import twitterIcon from '../assets/svg/twitter.svg'
 import '../global.less'
@@ -30,11 +29,8 @@ const route_map = [
 
 const Menu: React.FC<RouteProps> = ({ menu }) => {
   const location = useLocation()
-  console.log(location)
 
   const routeCls = (path: string) => {
-    console.log(path)
-
     return classnames({
       [styles.indicator]: true,
       [styles.indicator_select]: path === location.pathname,
@@ -58,7 +54,6 @@ const Header: React.FC = () => {
 
   return (
     <div className={styles.header}>
-      <img className={styles.logo} src={Logo} alt="logo" />
       <div className={styles.right}>
         <Menu menu={route_map} />
         <div className={styles.urls}>
