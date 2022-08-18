@@ -8,9 +8,11 @@ const ConnectWalletBtn: React.FC = () => {
 
   const gen_btn = (value: string | React.ReactNode, onclick?: MouseEventHandler) => {
     return (
-      <button onClick={onclick} className={styles.button}>
-        {value}
-      </button>
+      <div onClick={onclick} className={styles.button}>
+        <div className={styles.left}></div>
+        <div className={styles.right}></div>
+        <div className={styles.content}>{value}</div>
+      </div>
     )
   }
 
@@ -30,7 +32,7 @@ const ConnectWalletBtn: React.FC = () => {
     return gen_btn(shortAccountAddress)
   }
 
-  return gen_btn('Connect Wallte', () => connect())
+  return gen_btn('Connect Wallet', () => connect())
 }
 
 export default ConnectWalletBtn

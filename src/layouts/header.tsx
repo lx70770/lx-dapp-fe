@@ -1,7 +1,9 @@
 import ConnectWalletBtn from '@/components/connect-wallet-btn'
 import useWallte from '@/hooks/useWallet'
+import classnames from 'classnames'
 import React from 'react'
-import { history } from 'umi'
+import { history, useLocation } from 'umi'
+import Logo from '../assets/images/logo.png'
 import openseaIcon from '../assets/svg/opensea.svg'
 import twitterIcon from '../assets/svg/twitter.svg'
 import '../global.less'
@@ -27,11 +29,24 @@ const route_map = [
 ]
 
 const Menu: React.FC<RouteProps> = ({ menu }) => {
+  const location = useLocation()
+  console.log(location)
+
+  const routeCls = (path: string) => {
+    console.log(path)
+
+    return classnames({
+      [styles.indicator]: true,
+      [styles.indicator_select]: path === location.pathname,
+    })
+  }
+
   return (
     <div className={styles.menu}>
       {menu.map((item) => (
         <li key={item.path} className={styles.item} onClick={() => history.push(item.path)}>
-          {item.name}
+          <span>{item.name}</span>
+          <div className={routeCls(item.path)}></div>
         </li>
       ))}
     </div>
@@ -43,11 +58,9 @@ const Header: React.FC = () => {
 
   return (
     <div className={styles.header}>
-      <div className={styles.left}>
-        <span>FUCK FED</span>
-        <Menu menu={route_map} />
-      </div>
+      <img className={styles.logo} src={Logo} alt="logo" />
       <div className={styles.right}>
+        <Menu menu={route_map} />
         <div className={styles.urls}>
           <a href="https://www.twitter.com" target="_blank">
             <img src={twitterIcon} className={styles.twitterIcon} />
@@ -55,8 +68,8 @@ const Header: React.FC = () => {
           <a href="https://opensea.io/" target="_blank">
             <img src={openseaIcon} className={styles.openseaIcon} />
           </a>
+          <ConnectWalletBtn />
         </div>
-        <ConnectWalletBtn />
       </div>
     </div>
   )

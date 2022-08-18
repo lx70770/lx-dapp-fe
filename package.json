@@ -30,7 +30,7 @@
     "@web3-react/url": "8.0.25-beta.0",
     "@web3-react/walletconnect": "8.0.35-beta.0",
     "ahooks": "^3.7.0",
-    "animate.css": "^4.1.1",
+    "animejs": "^3.2.1",
     "antd": "^4.21.7",
     "classnames": "^2.3.1",
     "ipfs-core": "^0.15.4",
@@ -41,6 +41,7 @@
     "umi": "^4.0.7"
   },
   "devDependencies": {
+    "@types/animejs": "^3.1.5",
     "@types/lodash": "^4.14.182",
     "@types/merge-images": "^1.2.1",
     "@types/react": "^18.0.0",

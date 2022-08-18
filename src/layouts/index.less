@@ -1,123 +1,157 @@
 .layout {
   height: 100%;
-  position: relative;
 
-  .enter_page_left {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    background-color: #42428c;
-    z-index: 10000;
-    width: 50%;
-  }
+  .header {
+    height: 160px;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
 
-  .enter_page_right {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #42428c;
-    z-index: 10000;
-    width: 50%;
-  }
+    .logo {
+      display: inline-block;
+      height: 160px;
+      width: 160px;
+    }
 
-  .enter_button {
-    position: absolute;
-    z-index: 10001;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    width: 200px;
-    height: 200px;
-    width: 100px;
-    height: 48px;
-    border-radius: 24px;
-    border: 2px solid #fff;
-    background-color: transparent;
-    cursor: pointer;
-    color: #fff
-  }
-
-  .wrap_page {
-    height: 100%;
-
-    .header {
-      padding: 35px;
-      background-color: #404040;
-      color: #fff;
+    .right {
+      flex: 1;
+      align-self: flex-start;
       display: flex;
       flex-flow: row nowrap;
       justify-content: space-between;
       align-items: center;
+      height: 130px;
+      border-bottom: #383838 solid 1px;
+      margin: 0 68px 0 28px;
 
-      .left {
+      .menu {
         display: flex;
         flex-flow: row nowrap;
         justify-content: flex-start;
         align-items: center;
 
-        span {
-          font-size: 24px;
+        .item {
+          color: #EBF524;
+          font-size: 20px;
+          list-style: none;
           display: inline-block;
-          margin-right: 15px;
-        }
+          margin-right: 40px;
+          line-height: 24px;
+          cursor: pointer;
+          font-weight: 400;
 
-        .menu {
-          display: flex;
-          flex-flow: row nowrap;
-          justify-content: flex-start;
-          align-items: center;
-
-          .item {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 14px;
-            list-style: none;
+          span {
             display: inline-block;
-            margin-left: 15px;
-            cursor: pointer;
-            transition: color 0.1s ease-in-out;
+            margin-bottom: 9px;
+          }
 
-            &:hover {
-              color: rgba(255, 255, 255, 1);
-            }
+          .indicator {
+            margin: 0 auto;
+            width: 29px;
+            height: 4px;
+            background: #EBF524;
+            border-radius: 8px;
+            opacity: 0;
+            transition: opacity 0.2s linear;
+          }
+
+          .indicator_select {
+            opacity: 1;
           }
         }
       }
 
-      .right {
+      .urls {
         display: flex;
         flex-flow: row nowrap;
-        justify-content: flex-start;
+        justify-content: center;
         align-items: center;
 
-        .urls {
+        img {
+          display: inline-block;
+          margin-right: 26px;
+          cursor: pointer;
+          opacity: .8;
 
-          img {
-            display: inline-block;
-            margin-right: 20px;
-            cursor: pointer;
-            opacity: .8;
+          transition: opacity 0.2s ease-in-out;
 
-            transition: opacity 0.2s ease-in-out;
-
-            &:hover {
-              opacity: 1;
-            }
-          }
-
-          .twitterIcon {
-            width: 48px;
-            height: 48px;
-          }
-
-          .openseaIcon {
-            width: 38px;
-            height: 38px;
+          &:hover {
+            opacity: 1;
           }
         }
+
+        .twitterIcon {
+          width: 48px;
+          height: 48px;
+        }
+
+        .openseaIcon {
+          width: 38px;
+          height: 38px;
+        }
+      }
+    }
+  }
+
+  .wrap_page {
+    height: 100%;
+    position: relative;
+
+    .gates_one {
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: aquamarine;
+      transform-origin: center 650px;
+
+      .gates_one_door {
+        position: absolute;
+        top: 400px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        width: 300px;
+        height: 300px;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #fff;
+
+        .gates_one_door_left {
+          width: 150px;
+          height: 300px;
+          background-color: brown;
+        }
+
+        .gates_one_door_right {
+          width: 150px;
+          height: 300px;
+          background-color: blueviolet;
+        }
+      }
+
+      .gates_one_line {
+        height: 100%;
+        width: 2px;
+        background-color: red;
+      }
+
+      button {
+        position: absolute;
+        bottom: 100px;
+        width: 125px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
       }
     }
   }

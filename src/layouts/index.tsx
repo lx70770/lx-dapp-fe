@@ -1,9 +1,9 @@
 import useWallte from '@/hooks/useWallet'
-import 'animate.css'
 import classnames from 'classnames'
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { history, Outlet } from 'umi'
 import '../global.less'
+import GatesOne from './gates_one'
 import Header from './header'
 import styles from './index.less'
 
@@ -31,28 +31,6 @@ const Layout: React.FC = () => {
     }
   }, [])
 
-  const cls_left = classnames({
-    [styles.enter_page_left]: true,
-    animate__animated: true,
-    animate__fadeOutLeft: open,
-    animate__slow: true,
-  })
-
-  const cls_right = classnames({
-    [styles.enter_page_right]: true,
-    animate__animated: true,
-    animate__fadeOutRight: open,
-    animate__slow: true,
-  })
-
-  const cls_enter_button = classnames({
-    [styles.enter_button]: true,
-    animate__animated: true,
-    animate__fadeIn: true,
-    animate__slow: true,
-    animate__fadeOut: open,
-  })
-
   const cls_wrap_page = classnames({
     [styles.wrap_page]: true,
     animate__animated: true,
@@ -61,15 +39,11 @@ const Layout: React.FC = () => {
 
   return (
     <div className={styles.layout}>
-      {disable ? null : <div className={cls_left} ref={left_node}></div>}
-      {disable ? null : <div className={cls_right} ref={right_node}></div>}
+      <Header />
 
-      <button onClick={() => setOpen(true)} className={cls_enter_button}>
-        open
-      </button>
       <div className={cls_wrap_page}>
-        <Header />
         <Outlet />
+        <GatesOne />
       </div>
     </div>
   )
