@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "cross-env UMI_ENV=dev umi dev",
+    "prod": "cross-env UMI_ENV=prod umi dev",
     "build:dev": "cross-env UMI_ENV=dev umi build",
     "build:prod": "cross-env UMI_ENV=prod umi build",
     "postinstall": "umi setup",
@@ -32,12 +33,15 @@
     "ahooks": "^3.7.0",
     "animejs": "^3.2.1",
     "antd": "^4.21.7",
+    "atropos": "^1.0.2",
     "classnames": "^2.3.1",
     "ipfs-core": "^0.15.4",
     "lodash": "^4.17.21",
     "merge-images": "^2.0.0",
     "normalize.less": "^1.0.0",
     "react-transition-group": "^4.4.5",
+    "react-tsparticles": "^2.2.2",
+    "tsparticles": "^2.2.2",
     "umi": "^4.0.7"
   },
   "devDependencies": {

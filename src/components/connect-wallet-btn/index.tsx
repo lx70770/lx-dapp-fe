@@ -1,4 +1,5 @@
 import useWallet from '@/hooks/useWallet'
+import MetaMaskOnboarding from '@metamask/onboarding'
 import React, { MouseEventHandler } from 'react'
 import Spin from '../common-loading'
 import styles from './styles.less'
@@ -14,6 +15,14 @@ const ConnectWalletBtn: React.FC = () => {
         <div className={styles.content}>{value}</div>
       </div>
     )
+  }
+
+  const connectWallet = () => {
+    if (MetaMaskOnboarding.isMetaMaskInstalled()) {
+      connect()
+    } else {
+      new MetaMaskOnboarding().startOnboarding()
+    }
   }
 
   if (isActiviting) {
@@ -32,7 +41,7 @@ const ConnectWalletBtn: React.FC = () => {
     return gen_btn(shortAccountAddress)
   }
 
-  return gen_btn('Connect Wallet', () => connect())
+  return gen_btn('Connect Wallet', () => connectWallet())
 }
 
 export default ConnectWalletBtn
