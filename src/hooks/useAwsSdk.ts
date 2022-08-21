@@ -64,7 +64,7 @@ export function useAWS() {
         Bucket: BUCKET_NAME,
         Key: photoKey,
         Body: JSON.stringify({
-          name: `LZZZZ #${tokenId}`,
+          name: `virgin no.1 #${tokenId}`,
           description: 'this is first step image',
           image: `https://lx-cssofer.s3.ap-south-1.amazonaws.com/lz-images/${tokenId}.png`,
           attributes: [],

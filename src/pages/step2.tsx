@@ -10,6 +10,7 @@ import mergeImages from 'merge-images'
 import React, { useEffect, useState } from 'react'
 import BaseImage from '../assets/background/base.png'
 import styles from './styles.less'
+import AwsS3Page from './_lx_aws_s3'
 
 const { Option } = Select
 const { TabPane } = Tabs
@@ -155,6 +156,7 @@ const Step2: React.FC = () => {
           </Button>
         </div>
       </div>
+      <AwsS3Page />
     </Spin>
   )
 }
