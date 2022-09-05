@@ -65,6 +65,7 @@ const Layout: React.FC = () => {
   const onProgress = (anim: AnimeInstance) => {
     if (anim.progress === 100) {
       document.getElementById('root')!.style.overflowY = 'auto'
+      document.getElementById('root')!.style.minWidth = '1400px'
       setVisible(false)
       if (videoWrapRef) {
         videoWrapRef!.current!.style.display = 'none'

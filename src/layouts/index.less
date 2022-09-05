@@ -1,5 +1,6 @@
 .layout {
   position: relative;
+  width: 100%;
   height: 100%;
 
   .video {
@@ -12,30 +13,18 @@
     bottom: 0;
     z-index: 10001;
     text-align: center;
+    background-position: center center;
 
     video {
       width: 100%;
       height: 100%;
-      object-fit: fill;
-    }
-
-    @media (min-aspect-ratio: 16/9) {
-      video {
-        width: 100%;
-        height: auto;
-      }
-    }
-
-    @media (max-aspect-ratio: 16/9) {
-      video {
-        height: 100%;
-        width: auto;
-      }
+      object-fit: cover;
+      background-position: center center;
     }
   }
 
   .transitionRef {
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     bottom: 0;
