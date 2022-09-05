@@ -13,9 +13,9 @@ const AwsS3Page: React.FC = () => {
           ghost={false}
           title="AwsS3Page信息"
           extra={[
-            // <Button key="4" onClick={() => uploadJson()}>
-            //   uploadJson
-            // </Button>,
+            <Button key="4" onClick={() => uploadJson()}>
+              uploadJson
+            </Button>,
             <Button key="2" onClick={() => createAlbums('lz')}>
               createAlbums1
             </Button>,

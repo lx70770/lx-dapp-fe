@@ -3,8 +3,6 @@ import useWallte from '@/hooks/useWallet'
 import classnames from 'classnames'
 import React from 'react'
 import { history, useLocation } from 'umi'
-import openseaIcon from '../assets/svg/opensea.svg'
-import twitterIcon from '../assets/svg/twitter.svg'
 import '../global.less'
 import styles from './index.less'
 
@@ -54,18 +52,11 @@ const Header: React.FC = () => {
 
   return (
     <div className={styles.header}>
-      <div className={styles.right}>
+      <ConnectWalletBtn />
+      {/* <div className={styles.right}>
         <Menu menu={route_map} />
-        <div className={styles.urls}>
-          <a href="https://www.twitter.com" target="_blank">
-            <img src={twitterIcon} className={styles.twitterIcon} />
-          </a>
-          <a href="https://opensea.io/" target="_blank">
-            <img src={openseaIcon} className={styles.openseaIcon} />
-          </a>
-          <ConnectWalletBtn />
-        </div>
-      </div>
+        
+      </div> */}
     </div>
   )
 }

@@ -19,6 +19,27 @@ body {
     background-color: #000;
 }
 
+@font-face {
+    font-family: 'industry_black';
+    src: url('../src/assets/fonts/INDUSTRY-BLACK.TTF');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'industry_book';
+    src: url('../src/assets/fonts/INDUSTRY-BOOK.TTF');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'industry_demi';
+    src: url('../src/assets/fonts/INDUSTRY-DEMI.TTF');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .site-page-header-ghost-wrapper {
     padding: 24px;
     margin-bottom: 20px;
@@ -53,4 +74,47 @@ body {
     to {
         transform: rotate(360deg);
     }
+}
+
+.ant-select-selector {
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: none !important;
+    height: 62px !important;
+    outline: none !important;
+}
+
+.ant-select-selection-item {
+    line-height: 62px !important;
+    color: #fff !important;
+    font-family: 'industry_book';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+}
+
+.ant-select-arrow {
+    color: #fff !important;
+}
+
+.ant-select-dropdown {
+    background-color: rgba(217, 217, 217, 1) !important;
+}
+
+
+
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+    background-color: #EBF524 !important;
+    color: #000 !important;
+}
+
+.ant-select-item-option-active:not(.ant-select-item-option-disabled) {
+    background-color: #EBF524 !important;
+    color: #000 !important;
+}
+
+.ant-select-item {
+    color: #fff !important;
+    font-family: 'industry_book';
+    font-weight: 400;
 }

@@ -1,0 +1,8 @@
+<svg width="562" height="140" viewBox="0 0 562 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 2H562V138H0V2Z" fill="#CCE7FF" fill-opacity="0.2"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M562 0V2H0V0H562ZM0 138V140H562V138H0Z" fill="white" fill-opacity="0.8"/>
+<path d="M0 4H8V2H0V4Z" fill="white" fill-opacity="0.6"/>
+<path d="M0 138H8V136H0V138Z" fill="white" fill-opacity="0.6"/>
+<path d="M554 138H562V136H554V138Z" fill="white" fill-opacity="0.6"/>
+<path d="M554 4H562V2H554V4Z" fill="white" fill-opacity="0.6"/>
+</svg>

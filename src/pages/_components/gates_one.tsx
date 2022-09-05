@@ -1,10 +1,12 @@
-import useWallte from '@/hooks/useWallet'
+import useWallet from '@/hooks/useWallet'
+import MetaMaskOnboarding from '@metamask/onboarding'
 import anime, { AnimeInstance } from 'animejs'
 import Atropos from 'atropos/react'
 import React, { useCallback, useLayoutEffect, useRef } from 'react'
 import Particles from 'react-tsparticles'
 import { loadFull } from 'tsparticles'
 import type { Engine } from 'tsparticles-engine'
+import { history } from 'umi'
 import Door from '../../assets/images/door.png'
 import MintBtnDown from '../../assets/images/mint_button_down.png'
 import MintBtnTop from '../../assets/images/mint_button_top.png'
@@ -14,7 +16,7 @@ const GatesOne: React.FC = () => {
   const doorRef = React.useRef<AnimeInstance | null>(null)
   const door = useRef<HTMLDivElement>(null)
 
-  const {} = useWallte()
+  const { isActive, isActiviting, shortAccountAddress, isNetworkNotSupport, connect, disconnect } = useWallet()
 
   useLayoutEffect(() => {
     if (door.current) {
@@ -37,19 +39,38 @@ const GatesOne: React.FC = () => {
   }, [])
 
   const onProgress = (anim: AnimeInstance) => {
-    if (anim.progress > 90) {
-      // document.getElementById('root')!.style.overflow = 'auto'
-    }
     if (anim.progress === 100) {
       if (door.current) {
         door.current.style.display = 'none'
       }
+      history.replace('/indoor')
     }
   }
 
   const particlesInit = useCallback(async (engine: Engine) => {
     await loadFull(engine)
   }, [])
+
+  const connectWallet = () => {
+    if (MetaMaskOnboarding.isMetaMaskInstalled()) {
+      connect()
+    } else {
+      new MetaMaskOnboarding().startOnboarding()
+    }
+  }
+
+  const firstButton = () => {
+    if (isActiviting) return
+
+    if (isNetworkNotSupport) return
+
+    if (isActive) {
+      doorRef.current?.play()
+      return
+    }
+
+    connectWallet()
+  }
 
   return (
     <div ref={door} className={styles.gate_one}>
@@ -105,12 +126,7 @@ const GatesOne: React.FC = () => {
           <div className={styles.mint_button_down} data-atropos-offset="-2">
             <img src={MintBtnDown} alt="" />
           </div>
-          <div
-            className={styles.mint_button_top}
-            onClick={() => {
-              doorRef.current?.play()
-            }}
-          >
+          <div className={styles.mint_button_top} onClick={firstButton}>
             <img src={MintBtnTop} alt="" />
           </div>
         </Atropos>

@@ -79,7 +79,7 @@ const Step2: React.FC = () => {
       setGenloading(true)
       // Todo 检查配件使用 是否已经合成过
       await uploadImage(mergedUrl, tokenId)
-      await uploadJson(tokenId)
+      // await uploadJson(tokenId)
       await burn()
     } catch (e) {
     } finally {
@@ -156,7 +156,7 @@ const Step2: React.FC = () => {
           </Button>
         </div>
       </div>
-      <AwsS3Page />
+      {/* <AwsS3Page /> */}
     </Spin>
   )
 }
