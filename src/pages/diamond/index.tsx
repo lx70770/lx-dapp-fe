@@ -1,21 +1,8 @@
-import sleep from '@/utils/sleep'
-import React, { useEffect } from 'react'
-import { history } from 'umi'
-import DiamondIcon from '../assets/images/diamond.png'
+import React from 'react'
+import DiamondIcon from '../../assets/images/diamond.png'
 import styles from './styles.less'
 
 const Diamond: React.FC = () => {
-  useEffect(() => {
-    const unblock = history.block(async (tx) => {
-      let url = tx.location.pathname
-      // @ts-ignore
-      window._transitionAniRef.play()
-      await sleep()
-      console.log(`you want to go to ${url}?`)
-      unblock()
-      tx.retry()
-    })
-  }, [])
   return (
     <div className={styles.diamond_wrap}>
       <div className={styles.middle}>

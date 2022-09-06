@@ -1,51 +1,59 @@
-import sleep from '@/utils/sleep'
-import { Progress } from 'antd'
-import React, { useEffect, useLayoutEffect, useState } from 'react'
-import { history } from 'umi'
-import BackIcon from '../assets/svg/back.svg'
+import { Modal, Progress } from 'antd'
+import React, { useEffect, useState } from 'react'
+import ModalClose from '../../assets/svg/modal_close.png'
 import styles from './styles.less'
 
-const MergePage: React.FC = () => {
+interface MergeModal {
+  visible: boolean
+  set: (visible: boolean) => void
+}
+
+const merge_modal_style = {
+  backgroundColor: 'transparent',
+  border: 'none',
+  borderRadius: '0',
+}
+
+const mask_modal_style = {
+  backgroundColor: '#000',
+}
+
+const DetailModal: React.FC<MergeModal> = (props) => {
+  const { visible, set } = props
+
   const [percent, setPercent] = useState(0)
 
   useEffect(() => {
-    const unblock = history.block(async (tx) => {
-      let url = tx.location.pathname
-      // @ts-ignore
-      window._transitionAniRef.play()
-      await sleep()
-      console.log(`you want to go to ${url}?`)
-      unblock()
-      tx.retry()
-    })
-  }, [])
-
-  useLayoutEffect(() => {
-    setTimeout(() => {
-      setPercent(75)
-    }, 1000)
-  }, [])
+    if (visible) {
+      setTimeout(() => {
+        setPercent(75)
+      }, 1000)
+    }
+  }, [visible])
 
   return (
-    <div className={styles.detail_wrap}>
-      <div className={styles.middle}>
+    <Modal
+      closable={false}
+      visible={visible}
+      footer={false}
+      centered
+      bodyStyle={merge_modal_style}
+      maskClosable={false}
+      maskStyle={mask_modal_style}
+      width={1400}
+      zIndex={100001}
+    >
+      <div className={styles.detail_modal}>
         <div className={styles.left}>
-          <div className={styles.title}>TTG: #1234</div>
-          <div className={styles.img}>
+          <div className={styles.title}>TTG #2354</div>
+          <div className={styles.preview_img}>
             <img src="https://lx-cssofer.s3.ap-south-1.amazonaws.com/lx-step1-images/virgin_1.png" alt="" />
           </div>
         </div>
         <div className={styles.right}>
           <div className={styles.top}>
-            <div className={styles.owner}>OWNER: ADASDJ12kjLk1</div>
-            <div
-              className={styles.back}
-              onClick={() => {
-                history.back()
-              }}
-            >
-              <img src={BackIcon} alt="" />
-            </div>
+            <div className={styles.title}>OWNER: adasdijo1newjnfo23jn</div>
+            <img src={ModalClose} alt="" onClick={() => set(false)} />
           </div>
           <div className={styles.weapons}>
             <div className={styles.weapon}></div>
@@ -82,17 +90,12 @@ const MergePage: React.FC = () => {
                 <span>TRAITS4</span>
                 <Progress strokeLinecap="butt" percent={percent} showInfo={false} strokeColor="#FFF88A" trailColor="rgba(255, 255, 255, 0.7)" />
               </div>
-              <div className={styles.trails}>
-                <span>TRAITS5</span>
-                <Progress strokeLinecap="butt" percent={percent} showInfo={false} strokeColor="#FFF88A" trailColor="rgba(255, 255, 255, 0.7)" />
-              </div>
             </div>
           </div>
         </div>
       </div>
-      <div className={styles.bg}></div>
-    </div>
+    </Modal>
   )
 }
 
-export default MergePage
+export default DetailModal

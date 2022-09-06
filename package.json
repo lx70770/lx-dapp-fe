@@ -1,6 +1,6 @@
 {
   "private": true,
-  "author": "lixiang03 <lixiang03@hnnewsoft.com>",
+  "author": "lixiang03 <lx70770@gmail.com>",
   "license": "MIT",
   "scripts": {
     "dev": "cross-env UMI_ENV=dev umi dev",

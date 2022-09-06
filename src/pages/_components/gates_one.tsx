@@ -7,7 +7,6 @@ import Particles from 'react-tsparticles'
 import { loadFull } from 'tsparticles'
 import type { Engine } from 'tsparticles-engine'
 import { history } from 'umi'
-import Door from '../../assets/images/door.png'
 import MintBtnDown from '../../assets/images/mint_button_down.png'
 import MintBtnTop from '../../assets/images/mint_button_top.png'
 import styles from '../styles.less'
@@ -41,6 +40,7 @@ const GatesOne: React.FC = () => {
   const onProgress = (anim: AnimeInstance) => {
     if (anim.progress === 100) {
       if (door.current) {
+        document.getElementById('root')!.style.overflowX = 'auto'
         door.current.style.display = 'none'
       }
       history.replace('/indoor')
@@ -65,6 +65,7 @@ const GatesOne: React.FC = () => {
     if (isNetworkNotSupport) return
 
     if (isActive) {
+      document.getElementById('root')!.style.overflowX = 'hidden'
       doorRef.current?.play()
       return
     }
@@ -74,6 +75,8 @@ const GatesOne: React.FC = () => {
 
   return (
     <div ref={door} className={styles.gate_one}>
+      {/* <div className={styles.bg}></div> */}
+
       <Particles
         id="tsparticles"
         className={styles.tsparticles}
@@ -120,9 +123,10 @@ const GatesOne: React.FC = () => {
         }}
         init={particlesInit}
       />
+
       <div className={styles.step_one_bg}>
         <Atropos className={styles.my_atropos} activeOffset={0} rotateXMax={1} rotateYMax={1} shadow={false} highlight={false}>
-          <img src={Door} alt="" data-atropos-offset="-2" />
+          <div className={styles.door} data-atropos-offset="-2" />
           <div className={styles.mint_button_down} data-atropos-offset="-2">
             <img src={MintBtnDown} alt="" />
           </div>

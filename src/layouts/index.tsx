@@ -2,8 +2,8 @@ import useWallte from '@/hooks/useWallet'
 import anime, { AnimeInstance } from 'animejs'
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { history, Outlet } from 'umi'
-import Logo from '../assets/images/logo.png'
 import openseaIcon from '../assets/svg/opensea.svg'
+import RoadMapIcon from '../assets/svg/roadmap.svg'
 import twitterIcon from '../assets/svg/twitter.svg'
 import Loading from '../assets/videos/loading.mp4'
 import '../global.less'
@@ -16,7 +16,6 @@ const Layout: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null)
   const videoWrapAniRef = useRef<AnimeInstance | null>(null)
   const videoWrapRef = useRef<HTMLDivElement>(null)
-  const transitionRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     connectEagerly()
@@ -41,25 +40,6 @@ const Layout: React.FC = () => {
         videoWrapAniRef.current!.play()
       }
     }
-    if (transitionRef.current) {
-      // @ts-ignore
-      window._transitionAniRef = anime({
-        targets: transitionRef.current,
-        easing: 'linear',
-        opacity: {
-          value: [0, 1],
-          duration: 900,
-          loop: 2,
-          direction: 'alternate',
-        },
-        translateX: [document.body.getBoundingClientRect().width + 500, -document.body.getBoundingClientRect().width - 500],
-        duration: 1800,
-        autoplay: false,
-        complete: () => {
-          // transitionRef!.current!.style.display = 'none'
-        },
-      })
-    }
   }, [])
 
   const onProgress = (anim: AnimeInstance) => {
@@ -78,20 +58,23 @@ const Layout: React.FC = () => {
       <div ref={videoWrapRef} className={styles.video}>
         <video ref={videoRef} id="video" src={Loading} muted controls={false} autoPlay></video>
       </div>
-      <div ref={transitionRef} className={styles.transitionRef}></div>
       {visible ? null : (
         <>
-          <img className={styles.logo} src={Logo} alt="logo" />
           <Header />
           <div className={styles.urls}>
             <a href="https://www.twitter.com" target="_blank">
-              <img src={twitterIcon} className={styles.twitterIcon} />
+              <img src={RoadMapIcon} />
+            </a>
+            <a href="https://www.twitter.com" target="_blank">
+              <img src={twitterIcon} />
             </a>
             <a href="https://opensea.io/" target="_blank">
-              <img src={openseaIcon} className={styles.openseaIcon} />
+              <img src={openseaIcon} />
             </a>
           </div>
-          <Outlet />
+          <div className={styles.outlet}>
+            <Outlet />
+          </div>
         </>
       )}
     </div>

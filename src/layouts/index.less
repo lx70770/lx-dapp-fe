@@ -18,7 +18,7 @@
     video {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       background-position: center center;
     }
   }
@@ -35,106 +35,28 @@
     z-index: 10001;
   }
 
-  .logo {
-    position: absolute;
-    left: 0;
-    top: 0;
-    display: inline-block;
-    height: 160px;
-    width: 160px;
-    z-index: 10000;
-  }
-
   .header {
-    height: 130px;
-    background-color: #000;
-    color: #fff;
     display: flex;
     flex-flow: row nowrap;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
-    margin-left: 160px;
-    padding-right: 68px;
-    z-index: 100001;
+    padding: 26px 36px 0 26px;
+    z-index: 10000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: transparent;
 
-
-    .right {
-      align-self: flex-end;
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: space-between;
-      align-items: center;
-      height: 130px;
-      border-bottom: #383838 solid 1px;
-      margin: 0 68px 0 28px;
-
-      .menu {
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: flex-start;
-        align-items: center;
-
-        .item {
-          color: #EBF524;
-          font-size: 20px;
-          list-style: none;
-          display: inline-block;
-          margin-right: 40px;
-          line-height: 24px;
-          cursor: pointer;
-          font-weight: 400;
-
-          span {
-            display: inline-block;
-            margin-bottom: 9px;
-          }
-
-          .indicator {
-            margin: 0 auto;
-            width: 29px;
-            height: 4px;
-            background: #EBF524;
-            border-radius: 8px;
-            opacity: 0;
-            transition: opacity 0.2s linear;
-          }
-
-          .indicator_select {
-            opacity: 1;
-          }
-        }
-      }
-
-      .urls {
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: center;
-        align-items: center;
-
-        img {
-          display: inline-block;
-          margin-right: 26px;
-          cursor: pointer;
-          opacity: .8;
-
-          transition: opacity 0.2s ease-in-out;
-
-          &:hover {
-            opacity: 1;
-          }
-        }
-
-        .twitterIcon {
-          width: 48px;
-          height: 48px;
-        }
-
-        .openseaIcon {
-          width: 38px;
-          height: 38px;
-        }
-      }
+    .logo {
+      display: inline-block;
+      width: 228px;
+      height: 92px;
     }
+  }
+
+  .outlet {
+    padding-top: 0;
   }
 
   .urls {
@@ -144,9 +66,15 @@
     justify-content: space-between;
     align-items: center;
     bottom: 35px;
-    left: 35px;
-    height: 100px;
+    left: 40px;
     z-index: 10001;
+
+    img {
+      margin: 10px 0;
+      display: inline-block;
+      width: 48px;
+      height: 48px;
+    }
   }
 
   .out_loading {

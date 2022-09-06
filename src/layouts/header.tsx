@@ -3,6 +3,7 @@ import useWallte from '@/hooks/useWallet'
 import classnames from 'classnames'
 import React from 'react'
 import { history, useLocation } from 'umi'
+import Logo from '../assets/svg/logo.svg'
 import '../global.less'
 import styles from './index.less'
 
@@ -52,6 +53,8 @@ const Header: React.FC = () => {
 
   return (
     <div className={styles.header}>
+      <img className={styles.logo} src={Logo} alt="logo" />
+
       <ConnectWalletBtn />
       {/* <div className={styles.right}>
         <Menu menu={route_map} />
