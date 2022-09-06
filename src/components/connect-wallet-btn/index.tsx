@@ -7,6 +7,9 @@ import styles from './styles.less'
 const ConnectWalletBtn: React.FC = () => {
   const { isActive, isActiviting, shortAccountAddress, isNetworkNotSupport, connect, disconnect } = useWallet()
 
+  console.log('isActiviting')
+  console.log(isActiviting)
+
   const gen_btn = (value: string | React.ReactNode, onclick?: MouseEventHandler) => {
     return (
       <div onClick={onclick} className={styles.button}>

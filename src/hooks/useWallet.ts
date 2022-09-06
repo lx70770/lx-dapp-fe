@@ -1,5 +1,6 @@
-import { CURRENT_NEED_NETWORK,CURRENT_NEED_NETWORK_PARAMS, DEFAULT_JSON_PROVIDER } from '@/constants'
+import { CURRENT_NEED_NETWORK, CURRENT_NEED_NETWORK_PARAMS, DEFAULT_JSON_PROVIDER } from '@/constants'
 import sliceAddress from '@/utils/slice_address'
+import { message } from 'antd'
 import { useMemo } from 'react'
 import { hooks, metaMask } from '../connectors/metamask'
 
@@ -15,8 +16,13 @@ export default function useWallet() {
   const isActive = useIsActive()
   const provider = useProvider()
 
-  const connect = (chainId: number = 4) => {
-    return metaMask.activate(CURRENT_NEED_NETWORK_PARAMS)
+  const connect = () => {
+    return metaMask.activate(CURRENT_NEED_NETWORK_PARAMS).catch((e) => {
+      console.log(e)
+      if (e?.code < 0) {
+        message.error(e?.message ?? 'Something wrong, Please wait.')
+      }
+    })
   }
 
   const connectEagerly = () => {

@@ -3,7 +3,7 @@ import anime, { AnimeInstance } from 'animejs'
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { history, Outlet } from 'umi'
 import openseaIcon from '../assets/svg/opensea.svg'
-import RoadMapIcon from '../assets/svg/roadmap.svg'
+import roadMapIcon from '../assets/svg/roadmap.svg'
 import twitterIcon from '../assets/svg/twitter.svg'
 import Loading from '../assets/videos/loading.mp4'
 import '../global.less'
@@ -63,7 +63,7 @@ const Layout: React.FC = () => {
           <Header />
           <div className={styles.urls}>
             <a href="https://www.twitter.com" target="_blank">
-              <img src={RoadMapIcon} />
+              <img src={roadMapIcon} />
             </a>
             <a href="https://www.twitter.com" target="_blank">
               <img src={twitterIcon} />
