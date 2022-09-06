@@ -34,7 +34,11 @@ const ConnectWalletBtn: React.FC = () => {
   }
 
   if (isNetworkNotSupport) {
-    return <div className={styles.error_network}>Network Error</div>
+    return (
+      <div className={styles.error_network} onClick={() => connectWallet()}>
+        Network Error
+      </div>
+    )
   }
 
   if (isActive) {

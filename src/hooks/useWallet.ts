@@ -1,4 +1,4 @@
-import { CURRENT_NEED_NETWORK, DEFAULT_JSON_PROVIDER } from '@/constants'
+import { CURRENT_NEED_NETWORK,CURRENT_NEED_NETWORK_PARAMS, DEFAULT_JSON_PROVIDER } from '@/constants'
 import sliceAddress from '@/utils/slice_address'
 import { useMemo } from 'react'
 import { hooks, metaMask } from '../connectors/metamask'
@@ -16,7 +16,7 @@ export default function useWallet() {
   const provider = useProvider()
 
   const connect = (chainId: number = 4) => {
-    return metaMask.activate(chainId)
+    return metaMask.activate(CURRENT_NEED_NETWORK_PARAMS)
   }
 
   const connectEagerly = () => {
