@@ -1,7 +1,7 @@
 import useWallte from '@/hooks/useWallet'
 import anime, { AnimeInstance } from 'animejs'
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { history, Outlet } from 'umi'
+import { history, Outlet, useLocation } from 'umi'
 import openseaIcon from '../assets/svg/opensea.svg'
 import roadMapIcon from '../assets/svg/roadmap.svg'
 import twitterIcon from '../assets/svg/twitter.svg'
@@ -11,16 +11,25 @@ import Header from './header'
 import styles from './index.less'
 
 const Layout: React.FC = () => {
+  const location = useLocation()
   const [visible, setVisible] = useState(true)
   const { connectEagerly } = useWallte()
   const videoRef = useRef<HTMLVideoElement | null>(null)
   const videoWrapAniRef = useRef<AnimeInstance | null>(null)
   const videoWrapRef = useRef<HTMLDivElement>(null)
 
+  console.log(location)
+
   useEffect(() => {
     connectEagerly()
-    history.replace('/')
+    if (location.pathname !== '/tg') {
+      history.replace('/')
+    }
   }, [])
+
+  if (location.pathname === '/tg') {
+    return <Outlet />
+  }
 
   useLayoutEffect(() => {
     document.getElementById('root')!.style.overflowY = 'hidden'
@@ -62,7 +71,7 @@ const Layout: React.FC = () => {
         <>
           <Header />
           <div className={styles.urls}>
-            <a href="https://www.twitter.com" target="_blank">
+            <a href={window.location.href + 'tg'} target="_blank">
               <img src={roadMapIcon} />
             </a>
             <a href="https://www.twitter.com" target="_blank">
