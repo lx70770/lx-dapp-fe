@@ -22,12 +22,12 @@ const Layout: React.FC = () => {
 
   useEffect(() => {
     connectEagerly()
-    if (location.pathname !== '/tg') {
+    if (!location.pathname.includes('/tg')) {
       history.replace('/')
     }
   }, [])
 
-  if (location.pathname === '/tg') {
+  if (location.pathname.includes('/tg')) {
     return <Outlet />
   }
 
