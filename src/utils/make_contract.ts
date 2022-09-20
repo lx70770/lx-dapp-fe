@@ -1,10 +1,10 @@
+import { PayableOverrides } from '@ethersproject/contracts'
 import { JsonRpcProvider, Provider, Web3Provider } from '@ethersproject/providers'
 import { BigNumber, Contract, ContractInterface, ContractTransaction, Signer } from 'ethers'
 import LXDiamandAbi from '../abi/lx_diamand'
 import LXMFERAbi from '../abi/lx_mfer'
 import LXTokenAbi from '../abi/lx_token'
 import { LX_DIAMADN_ADDRESS, LX_MFER_ADDRESS, LX_TOKEN_ADDRESS } from './../constants/index'
-
 export function makeContract<T extends Contract>(address: string, abi: ContractInterface, library: Web3Provider | JsonRpcProvider, account?: string) {
   const signerOrProvider: Signer | Provider = account ? library.getSigner(account) : library
   return new Contract(address, abi, signerOrProvider) as T
@@ -40,8 +40,8 @@ export function makeLXMFERContract(provider: Web3Provider | JsonRpcProvider, acc
 
 export interface LXDiamandContract extends Contract {
   balanceOf: (address: string, id: string) => Promise<BigNumber>
-  totalSupply: () => Promise<BigNumber>
-  mint: (address: string) => Promise<ContractTransaction>
+  totalSupply: (id: string) => Promise<BigNumber>
+  mint: (address: string, overrides?: PayableOverrides) => Promise<ContractTransaction>
   burn: (address: string, id: string, value: string) => Promise<ContractTransaction>
 }
 

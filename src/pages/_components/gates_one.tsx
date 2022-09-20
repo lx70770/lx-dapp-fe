@@ -1,6 +1,8 @@
+import { useLXMFERInfo } from '@/hooks/useLXMFERContract'
 import useWallet from '@/hooks/useWallet'
 import MetaMaskOnboarding from '@metamask/onboarding'
 import anime, { AnimeInstance } from 'animejs'
+import { message } from 'antd'
 import Atropos from 'atropos/react'
 import React, { useCallback, useLayoutEffect, useRef } from 'react'
 import Particles from 'react-tsparticles'
@@ -15,7 +17,11 @@ const GatesOne: React.FC = () => {
   const doorRef = React.useRef<AnimeInstance | null>(null)
   const door = useRef<HTMLDivElement>(null)
 
-  const { isActive, isActiviting, shortAccountAddress, isNetworkNotSupport, connect, disconnect } = useWallet()
+  const { account, isActive, isActiviting, shortAccountAddress, isNetworkNotSupport, connect, disconnect } = useWallet()
+
+  const { balance, totalSupply, mint, loading } = useLXMFERInfo()
+
+  console.log(balance, totalSupply, loading)
 
   useLayoutEffect(() => {
     if (door.current) {
@@ -60,17 +66,25 @@ const GatesOne: React.FC = () => {
   }
 
   const firstButton = () => {
-    if (isActiviting) return
+    if (isActiviting || loading) {
+      message.warn('network is loading, please wait a moment.')
+      return
+    }
 
-    if (isNetworkNotSupport) return
-
-    if (isActive) {
+    if (Number(balance) > 0) {
       document.getElementById('root')!.style.overflowX = 'hidden'
       doorRef.current?.play()
       return
     }
 
-    connectWallet()
+    if (!account || !isActive) {
+      connectWallet()
+    }
+
+    if (Number(balance) <= 0) {
+      mint(account)
+      return
+    }
   }
 
   return (
@@ -133,6 +147,12 @@ const GatesOne: React.FC = () => {
           <div className={styles.mint_button_top} onClick={firstButton}>
             <img src={MintBtnTop} alt="" />
           </div>
+          {loading || totalSupply === '0' ? null : (
+            <div className={styles.mint_account} onClick={firstButton}>
+              <span className={styles.balance}>{totalSupply}/</span>
+              <span className={styles.total}>{5000}</span>
+            </div>
+          )}
         </Atropos>
       </div>
     </div>

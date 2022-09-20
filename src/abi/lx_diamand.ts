@@ -22,6 +22,23 @@ export default [
         type: 'uint256',
       },
       {
+        components: [
+          {
+            internalType: 'string',
+            name: 'name',
+            type: 'string',
+          },
+          {
+            internalType: 'uint256',
+            name: 'num',
+            type: 'uint256',
+          },
+        ],
+        internalType: 'struct LZ_DIAMOND_1.Special[]',
+        name: 'special',
+        type: 'tuple[]',
+      },
+      {
         internalType: 'string',
         name: 'uri_',
         type: 'string',
@@ -322,6 +339,25 @@ export default [
     inputs: [
       {
         internalType: 'uint256',
+        name: 'tnum',
+        type: 'uint256',
+      },
+    ],
+    name: 'check',
+    outputs: [
+      {
+        internalType: 'bool',
+        name: '',
+        type: 'bool',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
         name: 'id',
         type: 'uint256',
       },
@@ -332,6 +368,37 @@ export default [
         internalType: 'bool',
         name: '',
         type: 'bool',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'string[]',
+        name: 'specials',
+        type: 'string[]',
+      },
+    ],
+    name: 'getNums',
+    outputs: [
+      {
+        components: [
+          {
+            internalType: 'string',
+            name: 'name',
+            type: 'string',
+          },
+          {
+            internalType: 'uint256',
+            name: 'num',
+            type: 'uint256',
+          },
+        ],
+        internalType: 'struct LZ_DIAMOND_1.Special[]',
+        name: '',
+        type: 'tuple[]',
       },
     ],
     stateMutability: 'view',
@@ -372,6 +439,29 @@ export default [
       },
     ],
     stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'string',
+        name: 'curStr',
+        type: 'string',
+      },
+      {
+        internalType: 'uint256',
+        name: 'tnum',
+        type: 'uint256',
+      },
+      {
+        internalType: 'string[]',
+        name: 'specials',
+        type: 'string[]',
+      },
+    ],
+    name: 'merge',
+    outputs: [],
+    stateMutability: 'nonpayable',
     type: 'function',
   },
   {
@@ -553,6 +643,19 @@ export default [
       },
     ],
     name: 'setApprovalForAll',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: 'price',
+        type: 'uint256',
+      },
+    ],
+    name: 'setPublicPrice',
     outputs: [],
     stateMutability: 'nonpayable',
     type: 'function',

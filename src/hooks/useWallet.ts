@@ -1,7 +1,7 @@
 import { CURRENT_NEED_NETWORK, CURRENT_NEED_NETWORK_PARAMS, DEFAULT_JSON_PROVIDER } from '@/constants'
 import sliceAddress from '@/utils/slice_address'
 import { message } from 'antd'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { hooks, metaMask } from '../connectors/metamask'
 
 export default function useWallet() {
@@ -36,6 +36,14 @@ export default function useWallet() {
   const shortAccountAddress = useMemo(() => sliceAddress(account), [account])
 
   const isNetworkNotSupport = useMemo(() => Number(chainId) !== CURRENT_NEED_NETWORK && !!chainId, [chainId])
+
+  useEffect(() => {
+    console.log(123)
+
+    provider?.on('accountsChanged', (accounts) => {
+      console.log(accounts[0])
+    })
+  }, [])
 
   return {
     connect,

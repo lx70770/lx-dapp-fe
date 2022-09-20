@@ -51,11 +51,13 @@ export function useLXMFERInfo() {
     try {
       setMintLoading(true)
       const contract = makeLXMFERContract(provider, account)
+      message.info('start mint, please wait a moment.')
+
       const tx = await contract.mint(address)
       const result = await tx.wait()
       message.success(`mint success`)
     } catch (e: any) {
-      message.error(`mint error`)
+      message.error(e.message)
       console.error('mint失败', e.message)
     } finally {
       setMintLoading(false)

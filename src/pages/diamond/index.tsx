@@ -1,8 +1,12 @@
+import { useLXDiamandInfo } from '@/hooks/useLXDiamandContract'
 import React from 'react'
 import DiamondIcon from '../../assets/images/diamond.png'
 import styles from './styles.less'
 
 const Diamond: React.FC = () => {
+  const { diamandCount, totalSupply, mint, loading } = useLXDiamandInfo()
+  console.log(diamandCount, totalSupply)
+
   return (
     <div className={styles.diamond_wrap}>
       <div className={styles.middle}>
@@ -15,8 +19,12 @@ const Diamond: React.FC = () => {
         </div>
         <div className={styles.mint_button}>
           <div className={styles.text}>PRICE: 0.01ETH</div>
-          <div className={styles.text}>124/5000, quantity 10</div>
-          <div className={styles.mint}>MINT</div>
+          <div className={styles.text}>
+            {totalSupply}/5000, quantity {diamandCount}
+          </div>
+          <div className={styles.mint} onClick={mint}>
+            MINT
+          </div>
         </div>
       </div>
       <div className={styles.bg}></div>

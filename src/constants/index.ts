@@ -29,9 +29,9 @@ const ethParams: AddEthereumChainParameter = {
   blockExplorerUrls: ['https://etherscan.io'],
 }
 
-export const LX_TOKEN_ADDRESS = '0xdFf2A70e99D2aa9762864dBa21cE239Da2b8c22d'
-export const LX_MFER_ADDRESS = '0xbA8C7545d69D6aDBd0159685aFA2038512fEA779'
-export const LX_DIAMADN_ADDRESS = '0xcb8e43328b478aab6adab605bbc7a966dbf9fee9'
+export const LX_TOKEN_ADDRESS = '0x756cEAccE6fe0006487813C5F722c43255C28862'
+export const LX_MFER_ADDRESS = '0xeBC1C15bd4e3c79EE1273f60b64Ad68d94076a6a'
+export const LX_DIAMADN_ADDRESS = '0x756cEAccE6fe0006487813C5F722c43255C28862'
 
 // 最大的16进制数, 用于授权额度
 export const MAX_HEX_NUMBER = '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'

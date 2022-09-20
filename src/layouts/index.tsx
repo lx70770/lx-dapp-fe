@@ -71,7 +71,7 @@ const Layout: React.FC = () => {
         <>
           <Header />
           <div className={styles.urls}>
-            <a href={window.location.href + 'tg'} target="_blank">
+            <a href={window.location.origin + '/tg'} target="_blank">
               <img src={roadMapIcon} />
             </a>
             <a href="https://www.twitter.com" target="_blank">
