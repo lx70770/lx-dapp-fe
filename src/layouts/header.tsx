@@ -3,7 +3,7 @@ import useWallte from '@/hooks/useWallet'
 import classnames from 'classnames'
 import React from 'react'
 import { history, useLocation } from 'umi'
-import Logo from '../assets/svg/logo.svg'
+import Logo from '../assets/svg/logo.png'
 import '../global.less'
 import styles from './index.less'
 

@@ -6,7 +6,7 @@ import MergeBg from '../../assets/images/merge_bg.png'
 import Team from '../../assets/images/team.png'
 import ThreeCoin from '../../assets/images/three_coin.png'
 import ThreeGates from '../../assets/images/three_gates.png'
-import Logo from '../../assets/svg/logo.svg'
+import Logo from '../../assets/svg/logo.png'
 import openseaIcon from '../../assets/svg/opensea.svg'
 import twitterIcon from '../../assets/svg/twitter.svg'
 import styles from './styles.less'
@@ -27,9 +27,6 @@ const TgPage: React.FC = () => {
           controls={false}
           autoPlay
         ></video>
-        <div className={styles.gates}>
-          <img src={ThreeGates} alt="logo" />
-        </div>
       </div>
       <div className={styles.main_t}>
         <div className={styles.main_title}>ABOUT THREE GATES</div>

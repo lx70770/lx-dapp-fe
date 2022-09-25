@@ -2,9 +2,9 @@ import useWallte from '@/hooks/useWallet'
 import anime, { AnimeInstance } from 'animejs'
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { history, Outlet, useLocation } from 'umi'
-import openseaIcon from '../assets/svg/opensea.svg'
+import openseaIcon from '../assets/svg/opensea.png'
 import roadMapIcon from '../assets/svg/roadmap.svg'
-import twitterIcon from '../assets/svg/twitter.svg'
+import twitterIcon from '../assets/svg/twitter.png'
 import Loading from '../assets/videos/loading.mp4'
 import '../global.less'
 import Header from './header'
@@ -17,8 +17,6 @@ const Layout: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null)
   const videoWrapAniRef = useRef<AnimeInstance | null>(null)
   const videoWrapRef = useRef<HTMLDivElement>(null)
-
-  console.log(location)
 
   useEffect(() => {
     connectEagerly()

@@ -5,7 +5,6 @@ import anime, { AnimeInstance } from 'animejs'
 import { message } from 'antd'
 import Atropos from 'atropos/react'
 import React, { useCallback, useLayoutEffect, useRef } from 'react'
-import Particles from 'react-tsparticles'
 import { loadFull } from 'tsparticles'
 import type { Engine } from 'tsparticles-engine'
 import { history } from 'umi'
@@ -89,9 +88,9 @@ const GatesOne: React.FC = () => {
 
   return (
     <div ref={door} className={styles.gate_one}>
-      {/* <div className={styles.bg}></div> */}
+      <div className={styles.bg}></div>
 
-      <Particles
+      {/* <Particles
         id="tsparticles"
         className={styles.tsparticles}
         width="100%"
@@ -136,7 +135,7 @@ const GatesOne: React.FC = () => {
           detectRetina: true,
         }}
         init={particlesInit}
-      />
+      /> */}
 
       <div className={styles.step_one_bg}>
         <Atropos className={styles.my_atropos} activeOffset={0} rotateXMax={1} rotateYMax={1} shadow={false} highlight={false}>

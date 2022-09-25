@@ -202,7 +202,10 @@ const MergeModal: React.FC<MergeModal> = (props) => {
                 <Option value="Yiminghe">TTG #126</Option>
               </Select>
               <div className={styles.preview_img}>
-                <img src="https://lx-cssofer.s3.ap-south-1.amazonaws.com/lx-step1-images/virgin_1.png" alt="" />
+                <img src="https://lx-cssofer.s3.ap-south-1.amazonaws.com/lx-step1-images/virgin_1.png" alt="" onLoad={() => {
+                  console.log(1234);
+                  
+                }} />
               </div>
             </div>
             <div className={styles.character}>
