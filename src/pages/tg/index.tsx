@@ -2,13 +2,12 @@ import React from 'react'
 import GatesNo1 from '../../assets/images/gate_no1.png'
 import GatesNo2 from '../../assets/images/gate_no2.png'
 import GatesNo3 from '../../assets/images/gate_no3.png'
-import MergeBg from '../../assets/images/merge_bg.png'
 import Team from '../../assets/images/team.png'
-import ThreeCoin from '../../assets/images/three_coin.png'
-import ThreeGates from '../../assets/images/three_gates.png'
+import VideoImage from '../../assets/images/three_gates.png'
 import Logo from '../../assets/svg/logo.png'
 import openseaIcon from '../../assets/svg/opensea.svg'
 import twitterIcon from '../../assets/svg/twitter.svg'
+import ThreeCoin from '../../assets/videos/coins.mp4'
 import styles from './styles.less'
 
 const TgPage: React.FC = () => {
@@ -17,11 +16,14 @@ const TgPage: React.FC = () => {
       <div className={styles.header}>
         <img className={styles.logo} src={Logo} alt="logo" />
       </div>
+
       <div className={styles.video}>
+        <div className={styles.video_logo}>
+          <img className={styles.logo} src={VideoImage} alt="VideoImage" />
+        </div>
         <video
           id="video"
-          src="https://lx-cssofer.s3.ap-south-1.amazonaws.com/lx-tg-assets/njdhrbnnk1k2003988j2mm.mp4"
-          poster={MergeBg}
+          src="https://lx-cssofer.s3.ap-south-1.amazonaws.com/lx-tg-assets/njdjcmiei80j3nrnsr5irjj.mp4"
           loop
           muted
           controls={false}
@@ -59,7 +61,10 @@ const TgPage: React.FC = () => {
         FOLLOW DA, ALLOCATE ASSETS REASONABLY BEFORE BUILDING A COMMUNITY, AND INTRODUCE TOKENS TO REALIZE VALUE EXCHANGE AMONG MEMBERS, BUT IF YOU ARE HERE TO
         MAKE MONEY, PLEASE STAY AWAY FROM US.
       </div>
-      <img className={styles.gate_no1_logo} src={ThreeCoin} alt="logo" />
+      {/* <img className={styles.gate_no1_logo} src={ThreeCoin} alt="logo" /> */}
+      <div className={styles.coin_video}>
+        <video id="video" src={ThreeCoin} loop muted controls={false} autoPlay></video>
+      </div>
       <div className={styles.main_t}>
         <div className={styles.main_title}>GATE NO.3</div>
         <div className={styles.main__sub_title}>BACKTRACKING ACCORDING TO COMMUNITY CONTRIBUTION REWARDS</div>

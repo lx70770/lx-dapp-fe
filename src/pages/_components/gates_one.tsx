@@ -66,7 +66,13 @@ const GatesOne: React.FC = () => {
 
   const firstButton = () => {
     if (isActiviting || loading) {
-      message.warn('network is loading, please wait a moment.')
+      message.warn('please wait a moment.')
+      return
+    }
+
+    if (isNetworkNotSupport) {
+      connectWallet()
+      message.warn('Network error, you need switch network.')
       return
     }
 
