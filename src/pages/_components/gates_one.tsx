@@ -1,4 +1,5 @@
 import { useLXMFERInfo } from '@/hooks/useLXMFERContract'
+import useNotify from '@/hooks/useNotify'
 import useWallet from '@/hooks/useWallet'
 import MetaMaskOnboarding from '@metamask/onboarding'
 import anime, { AnimeInstance } from 'animejs'
@@ -19,6 +20,8 @@ const GatesOne: React.FC = () => {
   const { account, isActive, isActiviting, shortAccountAddress, isNetworkNotSupport, connect, disconnect } = useWallet()
 
   const { balance, totalSupply, mint, loading } = useLXMFERInfo()
+
+  const { error, success } = useNotify()
 
   console.log(balance, totalSupply, loading)
 
@@ -66,13 +69,13 @@ const GatesOne: React.FC = () => {
 
   const firstButton = () => {
     if (isActiviting || loading) {
-      message.warn('please wait a moment.')
+      error('please wait a moment.')
       return
     }
 
     if (isNetworkNotSupport) {
       connectWallet()
-      message.warn('Network error, you need switch network.')
+      error('Network error, you need switch network.')
       return
     }
 

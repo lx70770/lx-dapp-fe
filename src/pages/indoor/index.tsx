@@ -11,16 +11,9 @@ const Indoor: React.FC = () => {
     <div className={styles.indoor_wrap}>
       <div className={styles.middle}>
         <img src={SupplyBox} width={215} alt="" onClick={() => setMergeModal(true)} />
-        {/* <img
-          src={MintDiamond}
-          alt=""
-          style={{ width: '100px' }}
-          onClick={() => {
-            history.push('/diamond')
-          }}
-        /> */}
-        <MergeModal visible={mergeModal} set={setMergeModal} />
+        {/* <img src={SupplyBox} width={215} alt="" onClick={() => setMergeModal(true)} /> */}
       </div>
+      <MergeModal visible={mergeModal} set={setMergeModal} />
       <div className={styles.bg}></div>
     </div>
   )

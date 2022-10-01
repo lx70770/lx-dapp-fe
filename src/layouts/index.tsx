@@ -62,10 +62,10 @@ const Layout: React.FC = () => {
 
   return (
     <div className={styles.layout}>
-      <div ref={videoWrapRef} className={styles.video}>
+      {/* <div ref={videoWrapRef} className={styles.video}>
         <video ref={videoRef} id="video" src={Loading} muted controls={false} autoPlay></video>
       </div>
-      {visible ? null : (
+      {visible ? null : ( */}
         <>
           <Header />
           <div className={styles.urls}>
@@ -83,7 +83,7 @@ const Layout: React.FC = () => {
             <Outlet />
           </div>
         </>
-      )}
+      
     </div>
   )
 }

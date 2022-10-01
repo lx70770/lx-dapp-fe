@@ -2,8 +2,6 @@ import { CognitoIdentityClient } from '@aws-sdk/client-cognito-identity'
 import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3'
 import { fromCognitoIdentityPool } from '@aws-sdk/credential-provider-cognito-identity'
 import { useEffect, useState } from 'react'
-// import BlueBack from '../assets/Background/SunBlue.png'
-// import RedEye from '../assets/Eye/Red.png'
 
 const BUCKET_NAME = 'lx-cssofer'
 const REGION = 'ap-south-1'
@@ -35,100 +33,100 @@ export function useAWS() {
     }
   }
 
-  const createAlbums = async (name: string) => {
+  // const createAlbums = async (name: string) => {
+  //   if (s3Ins) {
+  //     const albumName = name.trim()
+  //     if (albumName.indexOf('/') !== -1) {
+  //       console.error('Album names cannot contain slashes.')
+  //       return
+  //     }
+  //     const albumKey = encodeURIComponent(albumName) + '/'
+  //     try {
+  //       const params = { Bucket: BUCKET_NAME, Key: albumKey }
+  //       const data = await s3Ins.send(new PutObjectCommand(params))
+  //       console.log('Successfully created album.')
+  //       console.log(data)
+  //     } catch (err) {
+  //       console.error('There was an error creating your album: ', err)
+  //     }
+  //   }
+  // }
+
+  // const uploadJson = async () => {
+  //   const ttg_array = [
+  //     4, 45, 25, 44, 2, 38, 20, 23, 9, 5, 6, 31, 10, 21, 12, 16, 19, 26, 15, 42, 34, 13, 36, 43, 49, 11, 41, 3, 33, 27, 50, 47, 30, 48, 17, 37, 18, 28, 35, 39,
+  //     7, 46, 40, 8, 32, 1, 14, 24, 22, 29,
+  //   ]
+  //   const albumPhotosKey = encodeURIComponent('ttg-jsons') + '/'
+  //   if (s3Ins) {
+  //     let i = 25
+  //     while (i < 50) {
+  //       const photoKey = `${albumPhotosKey}${ttg_array[i]}.json`
+  //       const uploadParams = {
+  //         Bucket: BUCKET_NAME,
+  //         Key: photoKey,
+  //         Body: JSON.stringify({
+  //           name: `TTG #${ttg_array[i]}`,
+  //           description: 'This is a journey about The three gates, enjoy the game.',
+  //           image: `https://lx-cssofer.s3.ap-south-1.amazonaws.com/ttg-origin/male.png`,
+  //           attributes: [
+  //             {
+  //               trait_type: 'sex',
+  //               value: 'male',
+  //             },
+  //           ],
+  //         }),
+  //         ContentType: 'application/json',
+  //       }
+  //       const data = await s3Ins.send(new PutObjectCommand(uploadParams))
+  //       console.log('Successfully uploaded json.')
+  //       console.log(data)
+
+  //       i++
+  //     }
+  //   }
+  // }
+
+  const uploadJson = async (tnum: string, b: string, face: string, s: string) => {
+    const albumPhotosKey = encodeURIComponent('ttg-jsons') + '/'
     if (s3Ins) {
-      const albumName = name.trim()
-      if (albumName.indexOf('/') !== -1) {
-        console.error('Album names cannot contain slashes.')
-        return
+      const photoKey = `${albumPhotosKey}${tnum}.json`
+      const uploadParams = {
+        Bucket: BUCKET_NAME,
+        Key: photoKey,
+        Body: JSON.stringify({
+          name: `TTG #${tnum}`,
+          description: 'This is a journey about The three gates, enjoy the game.',
+          image: `https://lx-cssofer.s3.ap-south-1.amazonaws.com/ttg-nfts/${tnum}.png`,
+          attributes: [
+            {
+              trait_type: 'sex',
+              value: 'male',
+            },
+            {
+              trait_type: 'background',
+              value: b,
+            },
+            {
+              trait_type: 'face',
+              value: face,
+            },
+            {
+              trait_type: 'scratch',
+              value: s,
+            },
+          ],
+        }),
+        ContentType: 'application/json',
       }
-      const albumKey = encodeURIComponent(albumName) + '/'
-      try {
-        const params = { Bucket: BUCKET_NAME, Key: albumKey }
-        const data = await s3Ins.send(new PutObjectCommand(params))
-        console.log('Successfully created album.')
-        console.log(data)
-      } catch (err) {
-        console.error('There was an error creating your album: ', err)
-      }
-    }
-  }
-
-  const a1 = [
-    3259, 4636, 1364, 763, 4253, 1198, 3966, 3555, 2259, 2423, 4072, 1200, 544, 3531, 3600, 4388, 663, 2178, 3715, 4967, 4433, 4993, 4215, 1758, 3681, 866,
-    4172, 3234, 1059, 2778, 762, 2649, 3813, 2333, 3317, 1507, 298, 4670, 1196, 1421, 1333, 3564, 2411, 2342, 2789, 2826, 1742, 2229, 4475, 2209, 293, 2895,
-    545, 4153, 4060, 2646, 4995, 4924, 1074, 1504, 2118, 4791, 4997, 3674, 1011, 444, 2355, 1993, 844, 1635, 1945, 486, 2579, 590, 2819, 2578, 4314, 2863, 2188,
-    1149, 4279, 3436, 106, 2978, 4976, 702, 3936, 172, 2141, 4618, 2979, 4405, 3480, 3720, 480, 2771, 931, 198, 4946, 3092, 1350, 2856, 4713, 1644, 2146, 1170,
-    1385, 2373, 4962, 1246, 3727, 582, 3449, 3628, 452, 453, 2276, 60, 756, 1468, 3442, 2022, 697, 1583, 3441, 2224, 686, 1873, 2074, 4674, 3741, 667, 3934,
-    2873, 1634, 2500, 1974, 4206, 2860, 2484, 1345, 2175, 4918, 3117, 4080, 468, 648, 216, 2537, 2260, 2521, 629, 4577, 1547, 4951, 3418, 1493, 289, 2412, 3024,
-    4928, 3661, 2616, 4333, 2866, 947, 4332, 3739, 2852, 531, 1166, 1540, 3941, 1080, 4258, 4978, 2938, 4622, 2019, 4223, 4944, 1415, 4303, 4989, 4689, 1138,
-    3321, 3289, 1584, 2809, 4393, 2071, 232, 4607, 3506, 448, 441, 315, 54, 776, 466, 4419, 3011, 4147, 3887, 1029, 826, 1262, 1280, 2823, 2185, 3971, 3874,
-    1125, 4690, 235, 3891, 3807, 2245, 2290, 4991, 3647, 2382, 3210, 2285, 2585, 2177, 4049, 941, 1223, 461, 2231, 446, 956, 3793, 1586, 3758, 4214, 4637, 644,
-    4566, 3959, 3193, 220, 2529, 1773, 2434, 4047, 3900, 465, 2568, 2841, 661, 4769, 3943, 2678, 1776, 3981, 3574, 940, 3745, 1919, 3457, 4641, 4410, 3145, 476,
-    2007, 4575, 1037, 3993, 3301, 1833, 2967, 4216, 478, 3748, 2321, 4579, 3767, 1806, 4438, 1428, 794, 3261, 4811, 2456, 1342, 4701, 4597, 1344, 4048, 1374,
-    1975, 4096, 1573, 4313, 155, 1818, 2971, 4240, 788, 2473, 2615, 4263, 1847, 1617, 3096, 1038, 1830, 4367, 1379, 789, 3673, 4890, 1596, 2389, 3603, 4793,
-    1550, 1020, 1541, 654, 4963, 868, 3061, 4964, 1820, 1152, 3098, 4665, 1086, 4768, 1414, 2831, 2658, 4132, 1982, 1551, 147, 2811, 2840, 4980, 3236, 2221,
-    1205, 1563, 3500, 3862, 3329, 4826, 2004, 1201, 316, 3423, 2780, 2192, 1437, 210, 4985, 587, 813, 450, 843, 1353, 4981, 3195, 3859, 205, 2608, 1259, 2955,
-    2459, 4956, 1010, 1865, 867, 2028, 2977, 4088, 3880, 2450, 3949, 1894, 1337, 3435, 2542, 124, 295, 101, 479, 4255, 474, 4156, 2801, 3013, 497, 1668, 1889,
-    186, 1055, 4309, 2197, 281, 472, 555, 3535, 4423, 4790, 1895, 4407, 1062, 292, 1216, 1998, 4895, 1066, 4780, 1143, 3511, 609, 2647, 1229, 4107, 3736, 2517,
-    3510, 2822, 4375, 4412, 4726, 3629, 4133, 1721, 3913, 850, 906, 885, 4409, 2833, 3239, 2312, 4683, 460, 2796, 2941, 2320, 4988, 3633, 2440, 4730, 301, 469,
-    4268, 4061, 529, 1134, 3905, 4051, 1211, 4043, 4872, 1347, 917, 1528, 2916, 4973, 4087, 2810, 2774, 915, 287, 505, 670, 1546, 1348, 4287, 2044, 1566, 910,
-    4731, 631, 1426, 4058, 305, 2193, 649, 2353, 454, 4843, 2834, 2277, 255, 1756, 2480, 3631, 1533, 1072, 778, 792, 1985, 2606, 1040, 4301, 4697, 2398, 1233,
-    3363, 132, 1552, 3078, 3540, 1611, 4992, 2340, 692, 4335, 678, 3387, 3797, 57, 2413, 3735, 3765, 1850, 1729, 4767, 4952, 2046, 4601, 1065, 2214, 877, 4141,
-    33, 1349, 571, 2970, 2262, 4318, 3801, 3638, 2495, 4384, 2828, 2956, 1401, 1944, 4971, 618, 2330, 2273, 3328, 2798, 4996, 3660, 4998, 1077, 67, 4661, 577,
-    4970, 8, 3849, 2995, 2540, 2351, 4285, 2142, 4299, 2610, 4779, 3365, 2690, 4972, 158, 1418, 131, 514, 4664, 1928, 459, 1544, 3159, 4086, 1785, 3213, 2163,
-    4101, 76, 4081, 3561, 4588, 160, 4698, 1228, 1549, 898, 1558, 4614, 1859, 1527, 576, 1629, 3930, 3763, 4655, 2241, 4616, 2662, 687, 4926, 2725, 1532, 471,
-    3923, 3338, 4668, 4840, 3549, 138, 1136, 2953, 3231, 3187, 2929, 462, 153, 3353, 908, 112, 3085, 698, 3975, 2989, 2714, 4089, 4137, 3047, 1530, 2930, 1805,
-    1007, 1534, 596, 781, 3827, 2949, 98, 1852, 4145, 4649, 4315, 633, 1570, 1218, 3357, 1766, 4110, 1858, 4282, 3833, 872, 144, 463, 1953, 614, 3086, 835,
-    4619, 2664, 1938, 2621, 4296, 3483, 1947, 4306, 3352, 2853, 3894, 1868, 1239, 39, 4627, 1607, 1054, 3, 819, 1638, 3829, 19, 3492, 1158, 891, 4696, 4704,
-    2712, 4307, 3040, 2847, 797, 2186, 2522, 3027, 905, 68, 3530, 4673, 4286, 1039, 1183, 1220, 768, 3831, 3146, 2076, 4632, 4281, 4659, 1663, 1989, 2932, 3306,
-    1912, 659, 1661, 1992, 2934, 622, 568, 4999, 1025, 800, 3904, 3567, 1886, 542, 893, 1511, 3343, 3319, 3922, 4295, 3985, 3337, 473, 1013, 3300, 3359, 3572,
-    2036, 641, 2047, 32, 4102, 4994, 4966, 3332, 853, 26, 1787, 771, 720, 1053, 1871, 3091, 580, 1782, 1957, 1622, 2701, 2695, 4708, 1618, 125, 2449, 2314, 509,
-    709, 2006, 475, 2600, 3032, 1035, 4829, 3335, 1621, 2900, 630, 4148, 3932, 2623, 3518, 1043, 518, 1877, 1028, 2531, 3579, 3926, 3389, 4706, 3598, 2592, 449,
-    4818, 2682, 2543, 2597, 4317, 470, 4624, 1854, 4801, 1935, 2638, 4266, 4921, 4630, 3379, 815, 130, 635, 2587, 2274, 3766, 1208, 2343, 4180, 117, 2278, 1807,
-    4027, 1824, 4411, 833, 1878, 1875, 3015, 140, 3093, 863, 3565, 1874, 3987, 1197, 2715, 3491, 108, 2304, 455, 3341, 3935, 601, 1860, 2570, 1225, 3684, 3595,
-    665, 4877, 457, 2253, 849, 477, 1911, 611, 3997, 3582, 3996, 4960, 4965, 1796, 4595, 2633, 3927, 624, 3358, 2630, 2632, 714, 4717, 1937, 2309, 4954, 3940,
-    2060, 4984, 3430, 2066, 4716, 1913, 503, 4685, 5000, 1215, 402, 1186, 1893, 1902, 2323, 4699, 837, 2072, 3316, 445, 4975, 85, 3989, 148, 513, 149, 640,
-    2611, 2444, 2613, 2618, 1052, 3504, 1764, 2575, 1879, 3990, 1848, 1946, 4909, 1234, 2051, 1951, 3998, 4715, 2846, 1761, 3596, 3976, 1058, 1157, 3160, 1024,
-    4968, 1015, 1908, 1026, 2550, 1623, 4987, 3149, 4979, 1828, 3304, 3980, 3942, 3516, 4718, 492, 4720, 3303, 488, 4969, 3573, 3205, 451, 3590, 464, 3473,
-    2462, 3921, 4983, 2350, 467, 2451, 2469, 2466, 4974, 506, 3938, 4651, 2439, 1017, 3958, 4691, 864, 3348, 484, 557, 3560, 3153, 3983, 399, 2432, 2476, 318,
-    2445, 2420, 2446, 2414, 2454, 1435, 2061, 3911,
-  ]
-
-  const uploadJson = async () => {
-    const albumPhotosKey = encodeURIComponent('lx-step1-json') + '/'
-    if (s3Ins) {
-      let i = 0
-      while (i < a1.length) {
-        const photoKey = `${albumPhotosKey}${a1[i]}.json`
-        const uploadParams = {
-          Bucket: BUCKET_NAME,
-          Key: photoKey,
-          Body: JSON.stringify({
-            name: `virgin_4 #${a1[i]}`,
-            description: 'This is a journey about The three gates, enjoy the game.',
-            image: `https://lx-cssofer.s3.ap-south-1.amazonaws.com/lx-step1-images/virgin_4.png`,
-            attributes: [
-              {
-                trait_type: 'type',
-                value: 'virgin_4',
-              },
-            ],
-          }),
-          ContentType: 'application/json',
-        }
-        const data = await s3Ins.send(new PutObjectCommand(uploadParams))
-        console.log('Successfully uploaded json.')
-        console.log(data)
-
-        i++
-      }
+      const data = await s3Ins.send(new PutObjectCommand(uploadParams))
+      console.log('Successfully uploaded json.')
     }
   }
 
   const uploadImage = async (base64Url: string, tokenId: string) => {
     const file = await dataURLtoFile(base64Url, `${tokenId}.png`)
-    const albumPhotosKey = encodeURIComponent('lz-images') + '/'
+    const albumPhotosKey = encodeURIComponent('ttg-nfts') + '/'
     if (s3Ins) {
       const fileName = file.name
       const photoKey = albumPhotosKey + fileName
@@ -140,7 +138,6 @@ export function useAWS() {
       }
       const data = await s3Ins.send(new PutObjectCommand(uploadParams))
       console.log('Successfully uploaded photo.')
-      console.log(data)
     }
   }
 
@@ -151,5 +148,5 @@ export function useAWS() {
     return file
   }
 
-  return { createAlbums, uploadImage, uploadJson, loading }
+  return { uploadImage, uploadJson, loading }
 }

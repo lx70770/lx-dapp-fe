@@ -1,8 +1,8 @@
-import { CURRENT_NEED_NETWORK, CURRENT_NEED_NETWORK_PARAMS, DEFAULT_JSON_PROVIDER } from '@/constants'
+import { CURRENT_NEED_NETWORK, CURRENT_NEED_NETWORK_PARAMS } from '@/constants'
 import sliceAddress from '@/utils/slice_address'
-import { message } from 'antd'
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import { hooks, metaMask } from '../connectors/metamask'
+import useNotify from './useNotify'
 
 export default function useWallet() {
   const { useChainId, useAccount, useAccounts, useENSName, useENSNames, useIsActivating, useIsActive, useProvider } = hooks
@@ -15,12 +15,13 @@ export default function useWallet() {
   const isActiviting = useIsActivating()
   const isActive = useIsActive()
   const provider = useProvider()
+  const { error } = useNotify()
 
   const connect = () => {
     return metaMask.activate(CURRENT_NEED_NETWORK_PARAMS).catch((e) => {
       console.log(e)
       if (e?.code < 0) {
-        message.error(e?.message ?? 'Something wrong, Please wait.')
+        error(e?.message ?? 'Something wrong, Please wait.')
       }
     })
   }
@@ -37,14 +38,6 @@ export default function useWallet() {
 
   const isNetworkNotSupport = useMemo(() => Number(chainId) !== CURRENT_NEED_NETWORK && !!chainId, [chainId])
 
-  useEffect(() => {
-    console.log(123)
-
-    provider?.on('accountsChanged', (accounts) => {
-      console.log(accounts[0])
-    })
-  }, [])
-
   return {
     connect,
     connectEagerly,
@@ -57,7 +50,7 @@ export default function useWallet() {
     isActiviting,
     isActive,
     isNetworkNotSupport,
-    provider: provider || DEFAULT_JSON_PROVIDER,
+    provider: provider,
     shortAccountAddress,
   }
 }

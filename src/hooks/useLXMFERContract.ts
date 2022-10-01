@@ -1,14 +1,17 @@
 import useWallet from '@/hooks/useWallet'
+import { etherToWei } from '@/utils/format_bignumber'
 import { makeLXMFERContract } from '@/utils/make_contract'
-import { message } from 'antd'
+import { JsonRpcProvider } from '@ethersproject/providers'
 import { useEffect, useState } from 'react'
+import useNotify from './useNotify'
 
 export function useLXMFERInfo() {
-  const { provider, account } = useWallet()
+  const { provider = new JsonRpcProvider(), account } = useWallet()
   const [loading, setLoading] = useState(false)
   const [mintLoading, setMintLoading] = useState(false)
   const [balance, setBalance] = useState('0')
   const [totalSupply, setTotalSupply] = useState('0')
+  const { error } = useNotify()
 
   async function getLXStapOneInfo() {
     try {
@@ -20,7 +23,7 @@ export function useLXMFERInfo() {
       setBalance(balance.toString())
       setTotalSupply(totalSupply.toString())
     } catch (e: any) {
-      console.error('get mfer info failed', e.message)
+      console.error('get info failed', e.message)
     } finally {
       setLoading(false)
     }
@@ -28,6 +31,10 @@ export function useLXMFERInfo() {
 
   useEffect(() => {
     if (account && provider) {
+      provider.on('accountsChanged', (accounts) => {
+        console.log(accounts[0])
+        location.reload()
+      })
       getLXStapOneInfo()
     }
   }, [account, provider])
@@ -51,14 +58,18 @@ export function useLXMFERInfo() {
     try {
       setMintLoading(true)
       const contract = makeLXMFERContract(provider, account)
-      message.info('start mint, please wait a moment.')
+      error('start mint, please wait a moment.')
+      const totalSupply = await contract.totalSupply()
+      console.log('totalSupply')
+      console.log(totalSupply.toNumber())
 
-      const tx = await contract.mint(address)
+      const tx = await contract.mint(address, {
+        value: totalSupply.toNumber() > 4 ? etherToWei('0.01') : etherToWei('0'),
+      })
       const result = await tx.wait()
-      message.success(`mint success`)
+      error(`mint success`)
     } catch (e: any) {
-      message.error(e.message)
-      console.error('mint失败', e.message)
+      error(e.message)
     } finally {
       setMintLoading(false)
     }

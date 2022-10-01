@@ -357,6 +357,25 @@ export default [
   {
     inputs: [
       {
+        internalType: 'string',
+        name: 'curStr',
+        type: 'string',
+      },
+    ],
+    name: 'checkMerged',
+    outputs: [
+      {
+        internalType: 'bool',
+        name: '',
+        type: 'bool',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
         internalType: 'uint256',
         name: 'id',
         type: 'uint256',

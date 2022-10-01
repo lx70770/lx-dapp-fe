@@ -1,41 +1,44 @@
+import { image_names } from '@/constants/decoration'
 import useWallet from '@/hooks/useWallet'
 import { makeLXDiamandContract, makeLXMFERContract } from '@/utils/make_contract'
-import { message } from 'antd'
+import MutilTasks from '@/utils/mutil_task'
 import { useEffect, useState } from 'react'
-import { etherToWei } from './../utils/format_bignumber'
+import useNotify from './useNotify'
 
 export function useLXDiamandInfo() {
   const { provider, account } = useWallet()
   const [loading, setLoading] = useState(false)
-  const [mintLoading, setMintLoading] = useState(false)
 
+  const [step1Count, setStep1Count] = useState('0')
   const [diamandCount, setDiamandCount] = useState('0')
-  const [totalSupply, setTotalSupply] = useState('0')
 
-  // const [toekn1Ids, setToekn1Ids] = useState<Array<string>>([])
+  const [toekn1Ids, setToekn1Ids] = useState<Array<string>>([])
+  const [specials, setSpecials] = useState<Array<any>>([])
+  const { error } = useNotify()
 
   async function getLXStepTwoInfo() {
     try {
       setLoading(true)
-
-      const diaContract = makeLXDiamandContract(provider, account)
-      // const step1contract = makeLXMFERContract(provider, account)
+      const diaContract = makeLXDiamandContract(provider!, account)
+      const step1contract = makeLXMFERContract(provider!, account)
 
       const balance = await diaContract.balanceOf(account, '0')
-      // const step1balance = await step1contract.balanceOf(account)
-      const totalSupply = await diaContract.totalSupply('0')
+      const step1balance = await step1contract.balanceOf(account)
 
       setDiamandCount(balance.toString())
-      setTotalSupply(totalSupply.toString())
-      // const mutilTask = new MutilTasks()
+      setStep1Count(step1balance.toString())
+      const mutilTask = new MutilTasks()
 
-      // for (let i = 0; i < Number(step1balance.toString()); i++) {
-      //   mutilTask.add(step1contract.tokenOfOwnerByIndex(account, `${i}`))
-      // }
-      // const results = await mutilTask.run()
-      // setToekn1Ids(results.map((item) => item.toString()))
+      for (let i = 0; i < Number(step1balance.toString()); i++) {
+        mutilTask.add(step1contract.tokenOfOwnerByIndex(account, `${i}`))
+      }
+      const results = await mutilTask.run()
+
+      setToekn1Ids(results.map((item) => item.toString()))
+      console.log(results.map((item) => item.toString()))
+      await getSpecials()
     } catch (e: any) {
-      console.error('get mfer info failed', e.message)
+      console.log(e)
     } finally {
       setLoading(false)
     }
@@ -47,44 +50,68 @@ export function useLXDiamandInfo() {
     }
   }, [account, provider])
 
-  async function burn() {
+  async function getSpecials() {
     try {
-      setMintLoading(true)
-      const contract = makeLXDiamandContract(provider, account)
-      const tx = await contract.burn(account, '0', '1')
-      const result = await tx.wait()
-      console.log(`burn success`)
+      const contract = makeLXDiamandContract(provider!, account)
+      const specials = await contract.getNums(image_names)
+      // const specials = await contract.mint(account, { value: etherToWei('0.01') })
+
+      setSpecials(specials)
+      console.log(specials)
     } catch (e: any) {
-      console.error('burn失败', e.message)
-    } finally {
-      setMintLoading(false)
+      console.error('specials', e.message)
     }
   }
 
-  async function mint() {
+  async function check(tnum: number): Promise<boolean> {
     try {
-      setMintLoading(true)
-      const contract = makeLXDiamandContract(provider, account)
-      message.info('start mint, please wait a moment.')
-      const tx = await contract.mint(account, { value: etherToWei('0.01') })
-      const result = await tx.wait()
-      console.log(`mint success`)
+      const contract = makeLXDiamandContract(provider!, account)
+      const check = await contract.check(tnum)
+      console.log('check')
+      console.log(check)
+      return check
     } catch (e: any) {
-      message.error(e.message)
+      console.error('checkMerged', e.message)
+      return true
+    }
+  }
+
+  async function checkMerged(curStr: string) {
+    try {
+      const contract = makeLXDiamandContract(provider!, account)
+      const checkMerged = await contract.checkMerged(curStr)
+      console.log('checkMerged')
+      console.log(checkMerged)
+      return checkMerged
+    } catch (e: any) {
+      console.error('checkMerged', e.message)
+      return true
+    }
+  }
+
+  async function merge(curStr: string, tnum: number, specials_: Array<string>) {
+    try {
+      setLoading(true)
+      const contract = makeLXDiamandContract(provider!, account)
+      error("start merge, please don't close this page")
+      const tx = await contract.merge(curStr, tnum, specials_)
+      const result = await tx.wait()
+    } catch (e: any) {
+      console.error(e.message)
     } finally {
-      setMintLoading(false)
+      setLoading(false)
       getLXStepTwoInfo()
     }
   }
 
   return {
-    burn,
-    mint,
+    check,
+    checkMerged,
+    specials,
     diamandCount,
-    totalSupply,
-    // toekn1Ids,
+    toekn1Ids,
     loading,
-    mintLoading,
+    merge,
     refresh: getLXStepTwoInfo,
   }
 }

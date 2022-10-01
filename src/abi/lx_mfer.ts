@@ -6,6 +6,11 @@ export default [
         name: '_maxSupply',
         type: 'uint256',
       },
+      {
+        internalType: 'string',
+        name: '_baseTokenURI',
+        type: 'string',
+      },
     ],
     stateMutability: 'nonpayable',
     type: 'constructor',
@@ -239,7 +244,7 @@ export default [
     ],
     name: 'mint',
     outputs: [],
-    stateMutability: 'nonpayable',
+    stateMutability: 'payable',
     type: 'function',
   },
   {
